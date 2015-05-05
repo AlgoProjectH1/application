@@ -1,2 +1,10 @@
 notifications:
   slack: projetgo:jo0oI2zSh4vHUoJzBIgbWIAF#builds
+
+before_install:
+  - npm -g install gulp
+  - npm -g install phantomjs
+  - npm install
+
+script:
+  - gulp tests
