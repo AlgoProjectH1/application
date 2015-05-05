@@ -9,9 +9,32 @@ before_install:
   - npm -g install gulp
   - npm -g install phantomjs
   - npm install
+  - gem install heroku
 
 script:
   - gulp tests
+
+after_success:
+  # Turn off warnings about SSH keys:
+  - echo "Host heroku.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  # Clear your current Heroku SSH keys:
+  - heroku keys:clear
+  # Add a new SSH key to Heroku
+  - yes | heroku keys:add
+  # Clone Heroku deployment repo to dist folder
+  - git clone git@heroku.com:getswipe.git dist
+  # Build
+  - grunt build
+  # Commit and Push dist folder to Heroku
+  - cd dist
+  - git config --global user.name "RomainJeff"
+  - git config --global user.email "romain.quilliot-bergue@hetic.net"
+  - git add *
+  - git commit -am "Travis CI"
+  - git push origin master
 
 env:
   global:
