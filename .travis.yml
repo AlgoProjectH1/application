@@ -10,6 +10,8 @@ before_install:
   - npm -g install phantomjs
   - npm install
   - gem install heroku
+  - git config --global user.name "RomainJeff"
+  - git config --global user.email "romain.quilliot-bergue@hetic.net"
 
 script:
   - gulp tests
@@ -31,8 +33,7 @@ after_success:
   - gulp prod
   # Commit and Push dist folder to Heroku
   - cd app_prod
-  - git config --global user.name "RomainJeff"
-  - git config --global user.email "romain.quilliot-bergue@hetic.net"
+  - mv index.html index.php
   - git add -f *
   - git commit -am "Travis CI"
   - git push origin master
