@@ -9,6 +9,8 @@ before_install:
   - npm -g install gulp
   - npm -g install phantomjs
   - npm install
+  - git config --global user.email "romain.quilliot-bergue@hetic.net"
+  - git config --global user.name "Romain Quilliot"
 
 after_success: 
   # Turn off warnings about SSH keys:
