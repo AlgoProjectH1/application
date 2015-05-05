@@ -25,9 +25,9 @@ after_success:
   # Add a new SSH key to Heroku
   - yes | heroku keys:add
   # Clone Heroku deployment repo to dist folder
-  - git clone git@heroku.com:getswipe.git dist
+  - git clone git@heroku.com:getswipe.git app_prod
   # Build
-  - grunt build
+  - gulp prod
   # Commit and Push dist folder to Heroku
   - cd dist
   - git config --global user.name "RomainJeff"
