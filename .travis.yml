@@ -27,6 +27,7 @@ after_success:
   - git remote add heroku git@heroku.com:getswipe.git
   - git add -A
   - git commit -m "Deploy to prod"
+  - git push heroku master
 
 script:
   - gulp tests
