@@ -40,7 +40,3 @@ after_success:
 env:
   global:
     secure: "f77QaLxdhus9IPVRAXKv1uOA13AHYdPjjUDmZxtzAFbfodlPvLFXYAdbzWEoRT8KUeh7+LN79ij9WjNMwQ2mR0WvVR66eKWifFEP/5PAxhtaxPgsuTwdmZ39ubzWt1ppPjfAM+UQWIJbGDyePl/sQmMi7BNKURmVsTXhozYMbng="
-
-deploy:
-  provider: heroku
-  app: getswipe
