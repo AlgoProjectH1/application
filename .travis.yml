@@ -9,7 +9,6 @@ before_install:
   - npm -g install gulp
   - npm -g install phantomjs
   - npm install
-  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
   - git config --global user.email "romain.quilliot-bergue@hetic.net"
   - git config --global user.name "Romain Quilliot"
 
@@ -21,8 +20,8 @@ after_success:
   - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
 
   # Add ssh key to heroku
-  - heroku keys:clear
-  - yes | heroku keys:add
+  - gem install heroku
+  - heroku keys:add
 
   # Deploy to heroku
   - cd app_prod/
