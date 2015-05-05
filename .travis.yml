@@ -6,5 +6,13 @@ before_install:
   - npm -g install phantomjs
   - npm install
 
+after_success: 
+  - cd app_prod/
+  - git init
+  - git remote add heroku git@heroku.com:getswipe.git
+  - git add -A
+  - git commit -m "Deploy to prod"
+  - git push heroku master
+
 script:
   - gulp tests
