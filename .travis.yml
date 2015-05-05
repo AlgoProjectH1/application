@@ -38,4 +38,4 @@ script:
 
 env:
   global:
-    secure: HEROKU_API_KEY=04163cbb-3dec-400b-ae23-6c7a5557faac
+    secure: 04163cbb-3dec-400b-ae23-6c7a5557faac
