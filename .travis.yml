@@ -25,9 +25,17 @@ after_success:
   - cd app_prod/
   - git init
   - git remote add heroku git@heroku.com:getswipe.git
+  - git pull heroku master
+  - cd ../
+  - gulp prod
+  - cd app_prod/
   - git add -A
   - git commit -m "Deploy to prod"
   - git push heroku master
 
 script:
   - gulp tests
+
+env:
+  global:
+    secure: HEROKU_API_KEY=04163cbb-3dec-400b-ae23-6c7a5557faac
