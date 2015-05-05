@@ -9,6 +9,7 @@ before_install:
   - npm -g install gulp
   - npm -g install phantomjs
   - npm install
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
   - git config --global user.email "romain.quilliot-bergue@hetic.net"
   - git config --global user.name "Romain Quilliot"
 
