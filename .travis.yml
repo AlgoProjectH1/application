@@ -29,7 +29,7 @@ after_success:
   # Build
   - gulp prod
   # Commit and Push dist folder to Heroku
-  - cd dist
+  - cd app_prod
   - git config --global user.name "RomainJeff"
   - git config --global user.email "romain.quilliot-bergue@hetic.net"
   - git add *
