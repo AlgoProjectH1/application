@@ -21,6 +21,7 @@ after_success:
 
   # Add ssh key to heroku
   - gem install heroku
+  - romain.quilliot-bergue@hetic.net | WeAreSwipe12345
   - heroku keys:add
 
   # Deploy to heroku
