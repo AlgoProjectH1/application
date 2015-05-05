@@ -1,12 +1,12 @@
 {
-  "name": "BaseProject",
+  "name": "Swipe",
   "version": "1.0.0",
-  "description": "Base architecture for new projects",
+  "description": "Jeu de go en ligne",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Romain QUILLIOT",
+  "author": "H1G2 HETIC",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.8.11",
