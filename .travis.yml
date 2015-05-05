@@ -40,4 +40,4 @@ script:
 
 env:
   global:
-    secure: 04163cbb-3dec-400b-ae23-6c7a5557faac
+    secure: "WVzcYyRgkpxngDF/a2X6MTw2IgxbZ1NsZ/WaVYc5+jclKcu9GS1qhP9cOq4jqJmXJCgMqWOpNyG7yc8O0jdvMwCsCkwQdhjkyp2RjIDpqH8umquENuF6a9iId/qvcMqyBSofr1uAlWBbxdxWLO8OxqcwzuJA19001yKe0mj/ORk="
