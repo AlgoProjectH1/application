@@ -1,18 +1,32 @@
 notifications:
   slack: projetgo:jo0oI2zSh4vHUoJzBIgbWIAF#builds
 
+language: node_js
+node_js:
+  - '0.10'
+
 before_install:
   - npm -g install gulp
   - npm -g install phantomjs
   - npm install
 
 after_success: 
+  # Turn off warnings about SSH keys:
+  - echo "Host heroku.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+
+  # Add ssh key to heroku
+  - heroku keys:clear
+  - yes | heroku keys:add
+
+  # Deploy to heroku
   - cd app_prod/
   - git init
   - git remote add heroku git@heroku.com:getswipe.git
   - git add -A
   - git commit -m "Deploy to prod"
-  - git push heroku master
 
 script:
   - gulp tests
