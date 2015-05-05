@@ -9,35 +9,10 @@ before_install:
   - npm -g install gulp
   - npm -g install phantomjs
   - npm install
-  - git config --global user.email "romain.quilliot-bergue@hetic.net"
-  - git config --global user.name "Romain Quilliot"
-
-after_success: 
-  # Turn off warnings about SSH keys:
-  - echo "Host heroku.com" >> ~/.ssh/config
-  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
-  - echo "   CheckHostIP no" >> ~/.ssh/config
-  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
-
-  # Add ssh key to heroku
-  - gem install heroku | romain.quilliot-bergue@hetic.net | WeAreSwipe12345
-  - heroku keys:add
-
-  # Deploy to heroku
-  - cd app_prod/
-  - git init
-  - git remote add heroku git@heroku.com:getswipe.git
-  - git pull heroku master
-  - cd ../
-  - gulp prod
-  - cd app_prod/
-  - git add -A
-  - git commit -m "Deploy to prod"
-  - git push heroku master
 
 script:
   - gulp tests
 
 env:
   global:
-    secure: "Ctg07feDULH9ah7peWhchpBQNQT8BClZr1ZOPBtFQx7JYGSbGQmAUJ1CYHIl02yJPxj3zNZaug6Q7sAT3NukN6hpRZCSta9OXANIQqjf7828/73X4zPU1t9MGDEaw75tihwaacFKylT/gPgZv/F4sPeJKtN/JBNS3bxW2b5bGG4="
+    secure: "f77QaLxdhus9IPVRAXKv1uOA13AHYdPjjUDmZxtzAFbfodlPvLFXYAdbzWEoRT8KUeh7+LN79ij9WjNMwQ2mR0WvVR66eKWifFEP/5PAxhtaxPgsuTwdmZ39ubzWt1ppPjfAM+UQWIJbGDyePl/sQmMi7BNKURmVsTXhozYMbng="
