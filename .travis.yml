@@ -12,18 +12,13 @@ before_install:
   - git config --global user.email "romain.quilliot-bergue@hetic.net"
   - git config --global user.name "Romain Quilliot"
 
-after_success: 
-  # Turn off warnings about SSH keys:
+after_success:
   - echo "Host heroku.com" >> ~/.ssh/config
   - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
   - echo "   CheckHostIP no" >> ~/.ssh/config
   - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
-
-  # Add ssh key to heroku
   - heroku keys:clear
   - yes | heroku keys:add
-
-  # Deploy to heroku
   - cd app_prod/
   - git init
   - git remote add heroku git@heroku.com:getswipe.git
@@ -38,6 +33,10 @@ after_success:
 script:
   - gulp tests
 
-env:
-  global:
-    secure: "WVzcYyRgkpxngDF/a2X6MTw2IgxbZ1NsZ/WaVYc5+jclKcu9GS1qhP9cOq4jqJmXJCgMqWOpNyG7yc8O0jdvMwCsCkwQdhjkyp2RjIDpqH8umquENuF6a9iId/qvcMqyBSofr1uAlWBbxdxWLO8OxqcwzuJA19001yKe0mj/ORk="
+deploy:
+  provider: heroku
+  api_key:
+    secure: Ctg07feDULH9ah7peWhchpBQNQT8BClZr1ZOPBtFQx7JYGSbGQmAUJ1CYHIl02yJPxj3zNZaug6Q7sAT3NukN6hpRZCSta9OXANIQqjf7828/73X4zPU1t9MGDEaw75tihwaacFKylT/gPgZv/F4sPeJKtN/JBNS3bxW2b5bGG4=
+  app: getswipe
+  on:
+    repo: AlgoProjectH1/application
