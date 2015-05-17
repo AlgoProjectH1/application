@@ -4,7 +4,7 @@ Jeu de go
 [![Build Status](https://travis-ci.org/AlgoProjectH1/application.svg)](https://travis-ci.org/AlgoProjectH1/application)
 
 
-### Workflow
+## Workflow
 1. Clone the repository on the developer machine
 2. Create a branch with the name of the feature
 3. Development of the feature (don't forger to keep the branch up to date with master)
