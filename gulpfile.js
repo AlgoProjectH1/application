@@ -26,7 +26,7 @@ var rename      = require('gulp-rename');
 
 /** COMPILE SERVICES **/
 gulp.task('compileServices', ['lintServices'], function () {
-    return gulp.src(devPath +'/services/**/+(Controllers|Models)/*.js')
+    return gulp.src([devPath +'/services/**/+(Controllers|Models)/*.js', devPath +'/services/app.js'])
         .pipe(sourcemaps.init())
         .pipe(concat("app.js"))
         .pipe(babel())
@@ -49,17 +49,6 @@ gulp.task('compileVendors', function () {
 gulp.task('uglifyVendors', ['compileVendors'], function () {
     return gulp.src(prodPath +'/scripts/vendors.js')
         .pipe(uglify(uglifyConfig))
-        .pipe(gulp.dest(prodPath +'/scripts'));
-});
-
-
-/** COMPILE FRAMEWORK **/
-gulp.task('compileFramework', function () {
-    return gulp.src(devPath +'/vendors/framework/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(concat("framework.js"))
-        .pipe(babel())
-        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest(prodPath +'/scripts'));
 });
 
@@ -133,7 +122,7 @@ gulp.task('tests', ['compileServices'], function () {
 
 
 /** TASK PROD **/
-gulp.task('prod', ['compileServices', 'uglifyVendors', 'compileFramework', 'html', 'compass', 'moveViews', 'moveResources']);
+gulp.task('prod', ['compileServices', 'uglifyVendors', 'html', 'compass', 'moveViews', 'moveResources']);
 
 
 /** TASK SERVE **/
