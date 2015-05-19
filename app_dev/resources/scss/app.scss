@@ -1,2 +1,46 @@
 @import "compass";
 @import "compass/reset";
+
+body {
+    background: #DEB887 !important;
+}
+
+#cells {
+    width: 300px;
+    height: 300px;
+    margin-left: calc(50% - 150px);
+    margin-top: 30px;
+}
+
+#cells td {
+    border-color: #3F2204;
+}
+
+#elements {
+    position: absolute;
+    left:  calc(50% - 150px);
+    top: 30px;
+    width: 300px;
+    height: 254px;
+}
+
+#elements div {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#elements div:hover {
+    cursor: pointer;
+}
+
+#elements div.black {
+    background: -webkit-radial-gradient(top, #FFF, #000, #000, #000);
+}
+
+
+#elements div.white {
+        background: -webkit-radial-gradient(top, #FFF, #eee, #eee, #eee);
+
+}
