@@ -39,7 +39,7 @@ class NodeDetection {
         var x = parseInt(stoneCoord.x);
         var y = parseInt(stoneCoord.y);
 
-        if ((x + 1) <= this.goban.length) stoneDimensions.push({ x: (x + 1), y: y });
+        if ((x + 1) < this.goban.length) stoneDimensions.push({ x: (x + 1), y: y });
         if ((x - 1) >= 0) stoneDimensions.push({ x: (x - 1), y: y });
         if ((y + 1) < this.goban.length) stoneDimensions.push({ x: x, y: (y + 1) });
         if ((y - 1) >= 0) stoneDimensions.push({ x: x, y: (y - 1) });
@@ -54,13 +54,14 @@ class NodeDetection {
      * @return array
      */
     hasFriends(stoneDimensions) {
-        var friends = [];
+        var friends = {};
 
         for (var dimension in stoneDimensions) {
             var dimensionCoords = stoneDimensions[dimension];
-
+            var index = dimensionCoords.x +":"+ dimensionCoords.y;
+        
             if (this.goban[dimensionCoords.x][dimensionCoords.y] === this.player) {
-                friends.push({x: dimensionCoords.x, y: dimensionCoords.y});
+                friends[index] = { x: dimensionCoords.x, y: dimensionCoords.y };
             }
         }
 
@@ -81,7 +82,8 @@ class NodeDetection {
             var stoneDimensions = this.getDimensions(currentStone);
             var stoneFriends = this.hasFriends(stoneDimensions);
 
-            console.log(stoneFriends);
+            if (Object.keys(stoneFriends).length > 0)
+                console.log(currentStone, stoneFriends);
         }
 
         return nodes;
