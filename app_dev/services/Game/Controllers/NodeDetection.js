@@ -76,24 +76,30 @@ class NodeDetection {
     getNodes() {
         var playerStones = this.selectPlayerStones();
         var nodes = [];
+        var traversed = [];
 
         for (var stone in playerStones) {
             var currentStone = playerStones[stone];
+            var currentStoneIdentifier = `${currentStone.x}:${currentStone.y}`;
+            
             var stoneDimensions = this.getDimensions(currentStone);
             var stoneFriends = this.hasFriends(stoneDimensions);
 
             var friendsNode = this.friendsIsInNode(stoneFriends, nodes);
             var stoneNode = this.isInNode(`${currentStone.x}:${currentStone.y}`, nodes);
 
-            if (stoneNode != false) {
-                // On met les amis dans le noeud
-                console.log('Pierre courante dans un noeud');
-            } else if (friendsNode != false) {
-                // On met les amis et la pierre courante dans le noeud
-                console.log('Friends dans un noeud');
+            if (stoneNode !== false && traversed[currentStoneIdentifier] === undefined) {
+                var nodeIndex = stoneNode;
+            } else if (friendsNode !== false) {
+                var nodeIndex = friendsNode;
             } else {
-                // On cree un noeud avec les amis et la pierre courante
+                var nodeIndex = nodes.length;
+                nodes[nodeIndex] = {stones: {}, freedom: 0};
             }
+
+            // Put stones in node
+            nodes[nodeIndex]['stones'][currentStoneIdentifier] = currentStone;
+            traversed.push(currentStoneIdentifier);
         }
 
         return nodes;
@@ -106,10 +112,12 @@ class NodeDetection {
      * @param array nodes
      */
     isInNode(stone, nodes) {
-        var nodeIndex = nodes.indexOf(stone) > -1;
+        for (var node in nodes) {
+            var currentNode = nodes[node]['stones'];
 
-        if (nodeIndex > -1)
-            return nodeIndex;
+            if (currentNode[stone] !== undefined )
+                return node;
+        }
 
         return false;
     }
@@ -124,7 +132,7 @@ class NodeDetection {
         for (var friend in friends) {
             var isInNode = this.isInNode(friend, nodes);
 
-            if (isInNode)
+            if (isInNode) 
                 return isInNode;
         }
 
