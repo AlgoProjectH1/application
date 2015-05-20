@@ -30,4 +30,12 @@ class Goban {
         this.goban.html(toDraw);
     }
 
+    /**
+     *
+     * Get the size of the goban
+     * @return int
+     */
+    getSize() {
+        return this.size;
+    }
 }
