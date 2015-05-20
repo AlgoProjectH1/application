@@ -72,6 +72,37 @@ class NodeDetection {
 
     /**
      *
+     * Get the liberties of a stone
+     * @param array dimensions
+     * @return int
+     */
+    getLiberties(dimensions) {
+        var libertiesCount = 0;
+
+        for (var dimension in dimensions) {
+            var dimensionCoords = dimensions[dimension];
+            var index = dimensionCoords.x +":"+ dimensionCoords.y;
+
+            if (this.goban[dimensionCoords.x][dimensionCoords.y] === 0) {
+                libertiesCount++;
+            }
+        }
+
+        return libertiesCount;
+    }
+
+    /**
+     *
+     * Return if the stone has already been traversed
+     * @param string identifier
+     * @return bool
+     */
+    hasBeenTraversed(identifier) {
+        return (this.traversed.indexOf(identifier) > -1) ? true : false;
+    }
+
+    /**
+     *
      * Get the player nodes
      * @return array
      */
@@ -80,10 +111,16 @@ class NodeDetection {
         var nodeIndex = 0;
 
         for (var stone in playerStones) {
+            var currentStone = playerStones[stone];
+            var stoneIdentifier = currentStone.x +":"+ currentStone.y;
+
+            if (this.hasBeenTraversed(stoneIdentifier))
+                continue;
+
             if (this.nodes[nodeIndex] === undefined)
                 this.nodes[nodeIndex] = {stones: {}, freedom: 0};
 
-            this.getNodesFriends(playerStones[stone], nodeIndex);
+            this.getNodesFriends(currentStone, nodeIndex);
             nodeIndex++;
         }
 
@@ -100,13 +137,14 @@ class NodeDetection {
         var currentStone = stone;
         var currentStoneIdentifier = `${currentStone.x}:${currentStone.y}`;
 
-        if (this.traversed.indexOf(currentStoneIdentifier) > -1)
+        if (this.hasBeenTraversed(currentStoneIdentifier))
             return;
 
         var stoneDimensions = this.getDimensions(currentStone);
         var stoneFriends = this.hasFriends(stoneDimensions);
 
         // Put stones in node
+        this.nodes[nodeIndex]['freedom'] += this.getLiberties(stoneDimensions);
         this.nodes[nodeIndex]['stones'][currentStoneIdentifier] = currentStone;
         this.traversed.push(currentStoneIdentifier);
 
