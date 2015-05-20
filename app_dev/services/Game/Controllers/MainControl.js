@@ -44,7 +44,8 @@ class MainControl {
             Container.get('Intersections').set({x: x, y: y}, control.currentPlayer);
             Container.get('Intersections').draw();
             
-            var node = new NodeDetection(control.currentPlayer, Container.get('Intersections').get());
+            var nodeController = new NodeDetection(control.currentPlayer, Container.get('Intersections').get());
+            var nodes = nodeController.getNodes();
             control.switchPlayer();
         }
     }
