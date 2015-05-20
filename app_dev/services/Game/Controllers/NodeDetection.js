@@ -92,7 +92,7 @@ class NodeDetection {
 
     /**
      *
-     * Node recursive node detector
+     * Recursive node detector
      * @param obj stone
      * @param int nodeIndex
      */
@@ -100,9 +100,8 @@ class NodeDetection {
         var currentStone = stone;
         var currentStoneIdentifier = `${currentStone.x}:${currentStone.y}`;
 
-        if (this.traversed.indexOf(currentStoneIdentifier) > -1) {
+        if (this.traversed.indexOf(currentStoneIdentifier) > -1)
             return;
-        }
 
         var stoneDimensions = this.getDimensions(currentStone);
         var stoneFriends = this.hasFriends(stoneDimensions);
