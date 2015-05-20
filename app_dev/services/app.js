@@ -1,5 +1,9 @@
-var gamePlatform = new Goban(9, $('#goban'));
-var gameIntersections = new Intersections(gamePlatform.getSize(), true);
+var mainContainer = new Container();
 
-gamePlatform.draw();
-gameIntersections.draw();
+// Container
+mainContainer
+    .add('Goban', new Goban(9, $('#goban')))
+    .add('Intersections', new Intersections(mainContainer.get('Goban').getSize(), true));
+
+var gameControl = new MainControl(mainContainer);
+gameControl.init();
