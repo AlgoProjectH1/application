@@ -82,11 +82,53 @@ class NodeDetection {
             var stoneDimensions = this.getDimensions(currentStone);
             var stoneFriends = this.hasFriends(stoneDimensions);
 
-            if (Object.keys(stoneFriends).length > 0)
-                console.log(currentStone, stoneFriends);
+            var friendsNode = this.friendsIsInNode(stoneFriends, nodes);
+            var stoneNode = this.isInNode(`${currentStone.x}:${currentStone.y}`, nodes);
+
+            if (stoneNode != false) {
+                // On met les amis dans le noeud
+                console.log('Pierre courante dans un noeud');
+            } else if (friendsNode != false) {
+                // On met les amis et la pierre courante dans le noeud
+                console.log('Friends dans un noeud');
+            } else {
+                // On cree un noeud avec les amis et la pierre courante
+            }
         }
 
         return nodes;
+    }
+
+    /**
+     *
+     * Check if a stone is in a node
+     * @param string stone
+     * @param array nodes
+     */
+    isInNode(stone, nodes) {
+        var nodeIndex = nodes.indexOf(stone) > -1;
+
+        if (nodeIndex > -1)
+            return nodeIndex;
+
+        return false;
+    }
+
+    /**
+     *
+     * Check if a stone friend are in a node
+     * @param object friends
+     * @param array nodes
+     */
+    friendsIsInNode(friends, nodes) {
+        for (var friend in friends) {
+            var isInNode = this.isInNode(friend, nodes);
+
+            if (isInNode)
+                return isInNode;
+        }
+
+        return false;
     }
 
 }
