@@ -116,38 +116,4 @@ class NodeDetection {
         }
     }
 
-    /**
-     *
-     * Check if a stone is in a node
-     * @param string stone
-     * @param array nodes
-     */
-    isInNode(stone, nodes) {
-        for (var node in nodes) {
-            var currentNode = nodes[node]['stones'];
-
-            if (currentNode[stone] !== undefined )
-                return node;
-        }
-
-        return false;
-    }
-
-    /**
-     *
-     * Check if a stone friend are in a node
-     * @param object friends
-     * @param array nodes
-     */
-    friendsIsInNode(friends, nodes) {
-        for (var friend in friends) {
-            var isInNode = this.isInNode(friend, nodes);
-
-            if (isInNode) 
-                return isInNode;
-        }
-
-        return false;
-    }
-
 }
