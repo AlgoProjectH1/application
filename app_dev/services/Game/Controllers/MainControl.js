@@ -6,6 +6,7 @@ class MainControl {
      */
     constructor() {
         this.currentPlayer = 1;
+        this.gameState = 1;
     }
 
     /**
@@ -16,17 +17,33 @@ class MainControl {
         Container.get('Goban').draw();
         Container.get('Intersections').draw();
 
-        $('#elements').on('click', 'div', this._eventElement);
+        var that = this;
+
+        $('#elements').on('click', 'div', function () {
+            that._eventElement.bind(this)(that);
+        });
+    }
+
+    /**
+     *
+     * Switch player turn
+     */
+    switchPlayer() {
+        this.currentPlayer = (this.currentPlayer == 1) ? 2 : 1;
     }
 
     /**
      *
      * When use click on an element
      */
-    _eventElement() {
+    _eventElement(control) {
         var x = parseInt($(this).data('x'));
         var y = parseInt($(this).data('y'));
 
-        
+        if (Container.get('Intersections').get(x, y) === 0) {
+            Container.get('Intersections').set({x: x, y: y}, control.currentPlayer);
+            Container.get('Intersections').draw();
+            control.switchPlayer();
+        }
     }
 }
