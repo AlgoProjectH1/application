@@ -1,12 +1,5 @@
-class Container {
-
-    /**
-     *
-     * Constructor
-     */
-    constructor() {
-        this.instances = new Object();
-    }
+var Container = {
+    instances: new Object(),
 
     /**
      *
@@ -16,11 +9,11 @@ class Container {
      * @return object
      *
      */
-    add(key, instance) {
+    add: function (key, instance) {
         this.instances[key] = instance;
 
         return this;
-    }
+    },
 
     /**
      *
@@ -28,7 +21,7 @@ class Container {
      * @param string key
      * @return object
      */
-    get(key) {
+    get: function (key) {
         return this.instances[key];
     }
-}
+};

@@ -3,10 +3,8 @@ class MainControl {
     /**
      *
      * Constructor
-     * @param Container container
      */
-    constructor(container) {
-        this.container = container;
+    constructor() {
         this.currentPlayer = 1;
     }
 
@@ -15,7 +13,20 @@ class MainControl {
      * Init the game
      */
     init() {
-        this.container.get('Goban').draw();
-        this.container.get('Intersections').draw();
+        Container.get('Goban').draw();
+        Container.get('Intersections').draw();
+
+        $('#elements').on('click', 'div', this._eventElement);
+    }
+
+    /**
+     *
+     * When use click on an element
+     */
+    _eventElement() {
+        var x = parseInt($(this).data('x'));
+        var y = parseInt($(this).data('y'));
+
+        
     }
 }
