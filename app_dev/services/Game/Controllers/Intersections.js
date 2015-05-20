@@ -7,7 +7,7 @@ class Intersections {
      * @param bool autocomplete (optional)
      */
     constructor(gobanSize, autocomplete) {
-        this.interCount = (gobanSize + 1)^2;
+        this.interCount = (gobanSize + 2)^2;
         this.intersections = this.initIntersections(autocomplete);
         this.elements = $('#elements');
     }
@@ -24,7 +24,7 @@ class Intersections {
         for (var x = 0; x <= this.interCount; x++) {
             intersections[x] = [];
 
-            for (var y = 0; y < this.interCount; y++) {
+            for (var y = 0; y <= this.interCount; y++) {
                 if (autocomplete === true)
                     intersections[x][y] = this.selectRandomState();
                 else
@@ -44,8 +44,8 @@ class Intersections {
         var random = Math.ceil(Math.random() * 10);
         var player = 0;
 
-        if (random > 7) player = 1;
-        else if (random > 5) player = 2;
+        if (random > 9) player = 1;
+        else if (random > 8) player = 2;
 
         return player;
     }
@@ -58,7 +58,7 @@ class Intersections {
         this.elements.html(null);
 
         for (var x = 0; x <= this.interCount; x++) {
-            for (var y = 0; y < this.interCount; y++) {
+            for (var y = 0; y <= this.interCount; y++) {
                 var posX = (x * 33) - 16;
                 var posY = (y * 33) - 16;
                 var player = this.intersections[x][y];
