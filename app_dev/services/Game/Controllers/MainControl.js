@@ -42,11 +42,34 @@ class MainControl {
 
         if (Container.get('Intersections').get(x, y) === 0) {
             Container.get('Intersections').set({x: x, y: y}, control.currentPlayer);
+
+            for (var player = 1; player <= 2; player++) {
+                var nodeController = new NodeDetection(player, Container.get('Intersections').get());
+                var nodes = nodeController.getNodes();
+
+                control._verifyNodesToDie(nodes);
+            }
+
             Container.get('Intersections').draw();
-            
-            var nodeController = new NodeDetection(control.currentPlayer, Container.get('Intersections').get());
-            var nodes = nodeController.getNodes();
             control.switchPlayer();
+        }
+    }
+
+    /**
+     *
+     * Kill trapped nodes
+     * @param obj nodes
+     */
+    _verifyNodesToDie(nodes) {
+        for (var node in nodes) {
+            var currentNode = nodes[node];
+
+            if (currentNode.freedom == 0) {
+                for (var stone in currentNode.stones) {
+                    var currentStone = currentNode.stones[stone];
+                    Container.get('Intersections').set(currentStone, 0);
+                }
+            }
         }
     }
 }
