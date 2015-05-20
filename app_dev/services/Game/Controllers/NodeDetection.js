@@ -9,6 +9,8 @@ class NodeDetection {
     constructor(player, goban) {
         this.player = player;
         this.goban = goban;
+        this.nodes = [];
+        this.traversed = [];
     }
 
     /**
@@ -39,7 +41,7 @@ class NodeDetection {
         var x = parseInt(stoneCoord.x);
         var y = parseInt(stoneCoord.y);
 
-        if ((x + 1) <= this.goban.length) stoneDimensions.push({ x: (x + 1), y: y });
+        if ((x + 1) < this.goban.length) stoneDimensions.push({ x: (x + 1), y: y });
         if ((x - 1) >= 0) stoneDimensions.push({ x: (x - 1), y: y });
         if ((y + 1) < this.goban.length) stoneDimensions.push({ x: x, y: (y + 1) });
         if ((y - 1) >= 0) stoneDimensions.push({ x: x, y: (y - 1) });
@@ -54,13 +56,14 @@ class NodeDetection {
      * @return array
      */
     hasFriends(stoneDimensions) {
-        var friends = [];
+        var friends = {};
 
         for (var dimension in stoneDimensions) {
             var dimensionCoords = stoneDimensions[dimension];
-
+            var index = dimensionCoords.x +":"+ dimensionCoords.y;
+        
             if (this.goban[dimensionCoords.x][dimensionCoords.y] === this.player) {
-                friends.push({x: dimensionCoords.x, y: dimensionCoords.y});
+                friends[index] = { x: dimensionCoords.x, y: dimensionCoords.y };
             }
         }
 
@@ -74,17 +77,42 @@ class NodeDetection {
      */
     getNodes() {
         var playerStones = this.selectPlayerStones();
-        var nodes = [];
+        var nodeIndex = 0;
 
         for (var stone in playerStones) {
-            var currentStone = playerStones[stone];
-            var stoneDimensions = this.getDimensions(currentStone);
-            var stoneFriends = this.hasFriends(stoneDimensions);
+            if (this.nodes[nodeIndex] === undefined)
+                this.nodes[nodeIndex] = {stones: {}, freedom: 0};
 
-            console.log(stoneFriends);
+            this.getNodesFriends(playerStones[stone], nodeIndex);
+            nodeIndex++;
         }
 
-        return nodes;
+        return this.nodes;
+    }
+
+    /**
+     *
+     * Recursive node detector
+     * @param obj stone
+     * @param int nodeIndex
+     */
+    getNodesFriends(stone, nodeIndex) {
+        var currentStone = stone;
+        var currentStoneIdentifier = `${currentStone.x}:${currentStone.y}`;
+
+        if (this.traversed.indexOf(currentStoneIdentifier) > -1)
+            return;
+
+        var stoneDimensions = this.getDimensions(currentStone);
+        var stoneFriends = this.hasFriends(stoneDimensions);
+
+        // Put stones in node
+        this.nodes[nodeIndex]['stones'][currentStoneIdentifier] = currentStone;
+        this.traversed.push(currentStoneIdentifier);
+
+        for (var friend in stoneFriends) {
+            this.getNodesFriends(stoneFriends[friend], nodeIndex);
+        }
     }
 
 }

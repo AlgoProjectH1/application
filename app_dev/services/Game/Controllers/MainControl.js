@@ -43,6 +43,8 @@ class MainControl {
         if (Container.get('Intersections').get(x, y) === 0) {
             Container.get('Intersections').set({x: x, y: y}, control.currentPlayer);
             Container.get('Intersections').draw();
+            
+            var node = new NodeDetection(control.currentPlayer, Container.get('Intersections').get());
             control.switchPlayer();
         }
     }
