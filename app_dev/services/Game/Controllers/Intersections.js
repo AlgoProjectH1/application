@@ -7,7 +7,7 @@ class Intersections {
      * @param bool autocomplete (optional)
      */
     constructor(gobanSize, autocomplete) {
-        this.interCount = (gobanSize + 2)^2;
+        this.interCount = gobanSize;
         this.intersections = this.initIntersections(autocomplete);
         this.elements = $('#elements');
     }
@@ -92,7 +92,7 @@ class Intersections {
      * @return int
      */
     get(x, y) {
-        if (!x)
+        if (!x && x != 0)
             return this.intersections;
 
         return this.intersections[x][y];
