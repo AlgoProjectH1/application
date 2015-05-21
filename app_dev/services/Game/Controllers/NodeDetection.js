@@ -152,5 +152,4 @@ class NodeDetection {
             this.getNodesFriends(stoneFriends[friend], nodeIndex);
         }
     }
-
 }
