@@ -9,6 +9,8 @@ before_install:
   - npm -g install gulp
   - npm -g install phantomjs
   - npm install
+  - gem install sass
+  - gem install compass
   - gem install heroku
   - git config --global user.name "RomainJeff"
   - git config --global user.email "romain.quilliot-bergue@hetic.net"
