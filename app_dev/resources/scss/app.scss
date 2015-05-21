@@ -5,6 +5,15 @@ body {
     background: #DEB887 !important;
 }
 
+.container {
+    width: 960px;
+    height: 300px;
+    margin-top: calc(50vh - 150px);
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
 #goban_container {
     width: 300px;
     height: 300px;
@@ -54,4 +63,50 @@ body {
 #elements div.white {
         background: -webkit-radial-gradient(top, #FFF, #eee, #eee, #eee);
 
+}
+
+
+.infos_container {
+    float: left;
+    margin-top: 30px;
+    width: 100px;
+    text-align: center;
+}
+
+.infos_container .stone {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.infos_container h3 {
+    text-align: center;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+#infos_black {
+    float: left;
+    margin-left: 250px;
+}
+
+.infos_container.turn h3 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#infos_white {
+    float: right;
+    margin-right: 260px;
+}
+
+#infos_white .stone {
+    background: white;
+}
+
+#infos_black .stone {
+    background: black;
 }

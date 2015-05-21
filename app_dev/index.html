@@ -8,10 +8,23 @@
     <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" type="text/css">
 </head>
 <body>
-    
-    <section id="goban_container">
-        <table id="goban"></table>
-        <div id="elements"></div>
+
+    <section class="container">
+        <!-- Informations -->
+        <section id="infos_black" data-player="1" class="infos_container turn">
+            <div class="stone"></div>
+            <h3>Joueur 1</h3>
+        </section>
+        <section id="infos_white" data-player="2" class="infos_container">
+            <div class="stone"></div>
+            <h3>Joueur 2</h3>
+        </section>
+        
+        <!-- Game -->
+        <section id="goban_container">
+            <table id="goban"></table>
+            <div id="elements"></div>
+        </section>
     </section>
     
     <script src="scripts/vendors.js"></script>

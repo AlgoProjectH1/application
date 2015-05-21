@@ -30,6 +30,9 @@ class MainControl {
      */
     switchPlayer() {
         this.currentPlayer = (this.currentPlayer == 1) ? 2 : 1;
+
+        $('.infos_container.turn').removeClass('turn');
+        $('.infos_container[data-player="'+ this.currentPlayer +'"]').addClass('turn');
     }
 
     /**
