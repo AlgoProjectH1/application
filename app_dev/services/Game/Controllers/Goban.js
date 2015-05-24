@@ -17,10 +17,10 @@ class Goban {
     draw() {
         var toDraw = "";
 
-        for (var x = 0; x < this.size; x++) {
+        for (var x = 0; x < (this.size - 1); x++) {
             toDraw += "<tr>";
 
-            for (var y = 0; y < this.size; y++) {
+            for (var y = 0; y < (this.size - 1); y++) {
                 toDraw += "<td>&nbsp;</td>";
             }
 

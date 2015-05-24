@@ -10,6 +10,7 @@ class Intersections {
         this.interCount = gobanSize;
         this.intersections = this.initIntersections(autocomplete);
         this.elements = $('#elements');
+        this.totalWidth = 300;
     }
 
     /**
@@ -21,10 +22,10 @@ class Intersections {
     initIntersections(autocomplete) {
         var intersections = [];
 
-        for (var x = 0; x <= this.interCount; x++) {
+        for (var x = 0; x < this.interCount; x++) {
             intersections[x] = [];
 
-            for (var y = 0; y <= this.interCount; y++) {
+            for (var y = 0; y < this.interCount; y++) {
                 if (autocomplete === true)
                     intersections[x][y] = this.selectRandomState();
                 else
@@ -57,10 +58,11 @@ class Intersections {
     draw() {
         this.elements.html(null);
 
-        for (var x = 0; x <= this.interCount; x++) {
-            for (var y = 0; y <= this.interCount; y++) {
-                var posX = (x * 33) - 16;
-                var posY = (y * 33) - 16;
+        for (var x = 0; x < this.interCount; x++) {
+            for (var y = 0; y < this.interCount; y++) {
+                var cellWidth = Math.ceil(this.totalWidth / (this.interCount - 1));
+                var posX = (x * cellWidth) - 16;
+                var posY = (y * cellWidth) - (cellWidth / 2);
                 var player = this.intersections[x][y];
 
                 switch (player) {
