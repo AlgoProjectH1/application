@@ -24,7 +24,7 @@
         <section class="form-container">
             <div class="logo"></div>
 
-            <form method="post">
+            <form method="post" id="login-form">
                 <div class="input-container">
                     <input type="text" id="email" required>
                     <label for="email">Adresse email</label>
@@ -34,14 +34,16 @@
                     <label for="password">Mot de passe</label>
                 </div>
 
-                <button class="btn top-margin">Connexion</button>
+                <div class="btn-container btn top-margin">
+                    <button>Connexion</button>
+                    <div class="btn-loading" id="login-loader"></div>
+                </div>
                 <a class="btn facebook">Connexion via facebook</a>
             </form>
         </section>
     </section>
     
     <script src="scripts/vendors.js"></script>
-    <script src="scripts/krow.js"></script>
     <script src="scripts/app.js"></script>
 </body>
 </html>

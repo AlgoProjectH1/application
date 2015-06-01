@@ -73,7 +73,45 @@
             display: block;
         }
 
+        .btn-container {
+            position: relative;
+
+            button {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: block;
+                z-index: 2;
+                background: transparent;
+                border: none;
+                padding: 0;
+                cursor: pointer;
+                font-family: "Raleway";
+                font-weight: bold;
+                font-size: 11px;
+                text-transform: uppercase;
+                outline: none;
+            }
+
+            .btn-loading {
+                z-index: 1;
+                left: 0;
+                top: 0;
+                position: absolute;
+                height: 100%;
+                width: 0%;
+                background: rgba(0,0,0,0.2);
+                @include border-radius(2px);
+
+                &.active {
+                    width: 100%;
+                    @include animation(loadingButton 3s);
+                }
+            }
+        }
+
         .btn {
+            outline: none;
             margin-top: 20px;
             width: 100%;
             text-align: center;
@@ -107,5 +145,15 @@
                 }
             }
         }
+    }
+}
+
+
+@keyframes loadingButton {
+    from {
+        width: 0%
+    }
+    to {
+        width: 100%;
     }
 }
