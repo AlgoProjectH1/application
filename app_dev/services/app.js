@@ -2,8 +2,11 @@
 Container.add('HTTP', new HttpResponse(location));
 Container.add('Template', new Template('templates/'));
 Container.add('Pages', new Pages());
-Container.add('UserApi', new UserApi('http://api-swipe-login.herokuapp.com'));
 Container.get('HTTP').setURI('/login');
+
+// APIs
+Container.add('UserApi', new UserApi(Apis.user.url, Apis.user.key));
+
 
 var Routing = new Router(Container.get('HTTP'));
 var routesContainer = new RoutesContainer();

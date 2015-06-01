@@ -1,7 +1,8 @@
 class UserApi {
     
-    constructor(base) {
+    constructor(base, token) {
         this.url = base;
+        this.key = key;
     }
 
     /**
@@ -11,7 +12,7 @@ class UserApi {
      * @param object callbacks
      */
     login(email, password, callbacks) {
-        new Request(this.url +'/login')
+        new Request(this.url +'/login?apiKey='+ this.key)
             .data('email', email)
             .data('password', password)
             .success(function () {
