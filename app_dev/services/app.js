@@ -9,10 +9,12 @@
 $(function () {
     $('#login-form').on('submit', function (event) {
         event.preventDefault();
-        $('#login-loader').addClass('active');
+        $('#login-loader .btn-loading').addClass('active');
+            $('#login-loader button').html('Connexion en cours');
 
         setTimeout(function () {
-            $('#login-loader').removeClass('active');
+            $('#login-loader .btn-loading').removeClass('active');
+            $('#login-loader button').html('Connexion');
         }, 3000);
     });
 });
