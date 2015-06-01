@@ -1,6 +1,6 @@
 class UserApi {
     
-    constructor(base, token) {
+    constructor(base, key) {
         this.url = base;
         this.key = key;
     }
