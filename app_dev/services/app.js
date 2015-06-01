@@ -1,20 +1,17 @@
-// Container
-// Container
-//     .add('Goban', new Goban(9, $('#goban')))
-//     .add('Intersections', new Intersections(Container.get('Goban').getSize(), false));
+/** Init **/
+Container.add('HTTP', new HttpResponse(location));
+Container.get('HTTP').setURI('/login');
 
-// var gameControl = new MainControl();
-// gameControl.init();
+var Routing = new Router(Container.get('HTTP'));
+var routesContainer = new RoutesContainer();
 
-$(function () {
-    $('#login-form').on('submit', function (event) {
-        event.preventDefault();
-        $('#login-loader .btn-loading').addClass('active');
-            $('#login-loader button').html('Connexion en cours');
 
-        setTimeout(function () {
-            $('#login-loader .btn-loading').removeClass('active');
-            $('#login-loader button').html('Connexion');
-        }, 3000);
-    });
-});
+/** Controllers **/
+var User = new UserController();
+
+
+/** Routes **/
+routesContainer.add('/login', User._pageLogin);
+
+
+Routing.run(routesContainer);
