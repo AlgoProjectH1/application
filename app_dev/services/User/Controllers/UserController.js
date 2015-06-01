@@ -18,6 +18,9 @@ var UserController = {
     _eventLogin: function (event) {
         event.preventDefault();
 
+        var email = $('#login-email').val();
+        var password = $('#login-password').val();
+
         $('#login-loader .btn-loading').addClass('active');
         $('#login-loader button').html('Connexion en cours');
 
