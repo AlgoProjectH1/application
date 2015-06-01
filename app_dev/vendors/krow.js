@@ -39,6 +39,7 @@ var HttpResponse = (function () {
         _classCallCheck(this, HttpResponse);
 
         this.location = loc;
+        this.onURIChange = function () {};
     }
 
     _createClass(HttpResponse, [{
@@ -47,11 +48,17 @@ var HttpResponse = (function () {
             this.set('hash', uri);
 
             // Call an event listener on URIChange (with params I want to pass)
+            this.onURIChange();
         }
     }, {
         key: 'getURI',
         value: function getURI() {
-            return this.get('hash');
+            return this.get('hash').replace('#', '');
+        }
+    }, {
+        key: 'onURIChange',
+        value: function onURIChange(callback) {
+            this.onURIChange = callback;
         }
     }, {
         key: 'get',
@@ -302,10 +309,12 @@ var RouteDecoder = (function () {
          *
          */
         value: function formatRoutePath() {
-            var routeToParse = this.route.path;
-            var datas = this.route.datas;
+            var routeToParse = this.route.options.path;
+            var datas = this.route.options.datas;
 
-            for (var data in datas) {
+            if (!datas) {
+                return routeToParse;
+            }for (var data in datas) {
                 routeToParse = routeToParse.replace('{' + data + '}', datas[data]);
             }
 
@@ -402,7 +411,10 @@ var Router = (function () {
             var routesMatcher = new RoutesMatcher(this.HTTP.getURI(), routesContainer.get());
 
             routesMatcher.check();
-            routesMatcher.listen();
+
+            this.HTTP.onURIChange((function () {
+                this.run(routesContainer);
+            }).bind(this));
         }
     }]);
 
@@ -506,11 +518,13 @@ var RoutesMatcher = (function () {
                 var matching = this.isMatching(currentRoute.getDecodedPath());
 
                 if (matching) {
-                    return currentRoute.getCallback(currentRoute.getParameters());
+                    currentRoute.getCallback(currentRoute.getParameters());
+                    return;
                 }
             }
 
-            return this.defaultPage();
+            this.defaultPage();
+            return;
         }
     }]);
 
