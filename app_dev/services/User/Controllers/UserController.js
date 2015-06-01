@@ -1,11 +1,21 @@
-class UserController {
+var UserController = {
 
-    _pageLogin() {
-        
-        $('#login-form').on('submit', this._eventLogin);
-    }
+    /**
+     * @url /login
+     */
+    loginAction: function () {
+        Container.get('Pages').load('user.login.hbs', $('#content'), function () {
+            // events listeners
+            $('#login-form').on('submit', UserController._eventLogin);
+        });
+    },
 
-    _eventLogin(event) {
+    /**
+     * When a user submit the login form
+     * @element #login-form
+     * @event submit
+     */
+    _eventLogin: function (event) {
         event.preventDefault();
 
         $('#login-loader .btn-loading').addClass('active');
