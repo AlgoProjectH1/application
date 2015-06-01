@@ -26,15 +26,15 @@ var UserController = {
             failure: UserController._eventLoginFail,
             after:   UserController._eventLoginAfter
         });
-    }
+    },
 
     _eventLoginSuccess: function (token) {
         alert(token);
-    }
+    },
 
     _eventLoginFail: function (error) {
         alert(error);
-    }
+    },
 
     _eventLoginAfter: function () {
         $('#login-loader .btn-loading').removeClass('active');
