@@ -87,7 +87,9 @@ var Request = (function () {
 
         this.url = url;
         this.datas = {};
-        this.headers = {};
+        this.headers = {
+            'Content-type': 'application/x-www-form-urlencoded'
+        };
         this.response = {};
         this.callback = function () {};
     }
@@ -151,13 +153,30 @@ var Request = (function () {
                 headers: this.headers
             };
 
-            if (method != 'GET') options.body = JSON.stringify(this.datas);
+            if (method != 'GET') options.body = this.formatBody(this.datas);
 
             fetch(this.url, options).then(function (response) {
                 if (response.ok === true) return response.text();
 
                 throw new Error(response.statusText);
             }).then(this.callback);
+        }
+    }, {
+        key: 'formatBody',
+
+        /**
+         * Format the body
+         * @param array body
+         * @return string
+         */
+        value: function formatBody(body) {
+            var formattedBody = '';
+
+            for (var key in body) {
+                formattedBody += key + '=' + body[key] +'&';
+            }
+
+            return formattedBody;
         }
     }, {
         key: 'GET',
