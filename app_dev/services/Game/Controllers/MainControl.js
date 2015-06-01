@@ -55,6 +55,34 @@ class MainControl {
 
             Container.get('Intersections').draw();
             control.switchPlayer();
+
+            // Tests empty nodes
+            // var nodeController = new NodeEmptyDetection(Container.get('Intersections').get());
+            // var nodes = nodeController.getNodes();
+            // var whiteTerritory = "rgba(255,255,255,0.3)";
+            // var blackTerritory = "rgba(0,0,0,0.3)";
+
+            // for (var node in nodes) {
+            //     var currentNode = nodes[node];
+            //     var color = "transparent";
+
+            //     console.log(currentNode.neighbors);
+
+            //     if (currentNode.neighbors.black === 0 && currentNode.neighbors.white > 1) {
+            //         console.log('TERRITOIRE BLANC');
+            //         color = whiteTerritory;
+            //     } else if (currentNode.neighbors.white === 0 && currentNode.neighbors.black > 1) {
+            //         console.log('TERRITOIRE NOIR');
+            //         color = blackTerritory;
+            //     } else {
+            //         console.log('TERRITOIRE NEUTRE');
+            //     }
+
+            //     for (var stone in currentNode.stones) {
+            //         var currentStone = currentNode.stones[stone];
+            //         $('[data-x="'+ currentStone.x +'"][data-y="'+ currentStone.y +'"]').css('background', color);
+            //     }
+            // }
         }
     }
 

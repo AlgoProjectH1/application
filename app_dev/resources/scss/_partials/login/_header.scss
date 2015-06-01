@@ -1,0 +1,32 @@
+.header-login {
+    margin-top: 40px;
+    
+    .right {
+        float: right;
+
+        span {
+            color: #767878;
+        }
+
+        .button {
+            margin-left: 20px;
+        }
+
+        .button-signup {
+            background: transparent;
+            border: solid 1px #767878;
+            text-transform: uppercase;
+            color: #767878;
+            font-weight: bold;
+            padding: 7px 25px 7px 25px;
+            cursor: pointer;
+            outline: none;
+            @include transition-duration(200ms);
+
+            &:hover {
+                background: #767878;
+                color: #F1F5F6;
+            }
+        }
+    }
+}

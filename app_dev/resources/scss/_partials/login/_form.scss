@@ -1,0 +1,102 @@
+.form-container {
+    margin-top: 50px;
+
+    .logo {
+        background: url('../resources/images/logo.png');
+        background-size: calc(245px * 0.8) calc(70px * 0.8);
+        width: calc(245px * 0.8);
+        height: calc(70px * 0.8);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    form {
+        margin-top: 100px;
+        width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .input-container {
+            margin-top: 40px;
+            position: relative;
+
+            input {
+                width: 100%;
+                height: 24px;
+                border: none;
+                border-bottom: solid 2px #D4D4D4;
+                background: transparent;
+                outline: none;
+                font-family: "Raleway";
+                text-transform: uppercase;
+                color: rgba(0,0,0,0.5);
+                @include transition-duration(200ms);
+
+                &:hover {
+                    border-bottom-color: rgba(0,0,0,0.4);
+                }
+
+                &:focus {
+                    border-bottom-color: rgba(0,0,0,0.4);
+                    color: #000;
+                }
+            }
+
+            label {
+                font-weight: bold;
+                color: #AEAEAE;
+                position: absolute;
+                left: 0;
+                top: 0;
+                text-transform: uppercase;
+                @include transition-duration(400ms);
+
+                &:hover {
+                    cursor: text;
+                }
+            }
+
+            input:hover + label {
+                color: rgba(0,0,0,0.6);
+            }
+
+            input:focus + label,
+            input:valid + label {
+                font-size: 11px;
+                color: rgba(0,0,0,0.6);
+                @include transform(translateY(-15px));
+            }
+        }
+
+        .btn {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            @include border-radius(2px);
+            @include transition-duration(200ms);
+            background: #b4b4b4;
+            color: #000;
+            text-transform: uppercase;
+            font-family: "Raleway";
+            font-weight: bold;
+            font-size: 11px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: none;
+            cursor: pointer;
+
+            &.top-margin {
+                margin-top: 40px;
+            }
+
+            &.facebook {
+                background: #30384d;
+                color: #FFF;
+
+                &:hover {
+                    background: #293043;
+                }
+            }
+        }
+    }
+}

@@ -5,29 +5,43 @@
     <title>Document</title>
     
     <link rel="stylesheet" href="styles/app.css" type="text/css">
-    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Raleway:700,400,300" rel="stylesheet" type="text/css">
 </head>
 <body>
 
     <section class="container">
-        <!-- Informations -->
-        <section id="infos_black" data-player="1" class="infos_container turn">
-            <div class="stone"></div>
-            <h3>Joueur 1</h3>
-        </section>
-        <section id="infos_white" data-player="2" class="infos_container">
-            <div class="stone"></div>
-            <h3>Joueur 2</h3>
-        </section>
+        <!-- HEADER -->
+        <header class="header-login">
+            <div class="right">
+                <span>Pas de compte ?</span>
+                <button class="button button-signup">S'inscrire</button>
+            </div>
+        </header>
+
+        <div class="clear"></div>
         
-        <!-- Game -->
-        <section id="goban_container">
-            <table id="goban"></table>
-            <div id="elements"></div>
+        <!-- FORM -->
+        <section class="form-container">
+            <div class="logo"></div>
+
+            <form method="post">
+                <div class="input-container">
+                    <input type="text" id="email" required>
+                    <label for="email">Adresse email</label>
+                </div>
+                <div class="input-container">
+                    <input type="password" id="password" required>
+                    <label for="password">Mot de passe</label>
+                </div>
+
+                <button class="btn top-margin">Connexion</button>
+                <button class="btn facebook">Connexion via facebook</button>
+            </form>
         </section>
     </section>
     
     <script src="scripts/vendors.js"></script>
+    <script src="scripts/krow.js"></script>
     <script src="scripts/app.js"></script>
 </body>
 </html>
