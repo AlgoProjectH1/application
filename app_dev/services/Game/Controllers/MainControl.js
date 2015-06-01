@@ -95,7 +95,7 @@ class MainControl {
         for (var node in nodes) {
             var currentNode = nodes[node];
 
-            if (currentNode.freedom == 0) {
+            if (currentNode.freedom === 0) {
                 for (var stone in currentNode.stones) {
                     var currentStone = currentNode.stones[stone];
                     Container.get('Intersections').set(currentStone, 0);
