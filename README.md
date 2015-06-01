@@ -1,7 +1,8 @@
 Jeu de go
 ==========
 
-[![Build Status](https://travis-ci.org/AlgoProjectH1/application.svg)](https://travis-ci.org/AlgoProjectH1/application)
+[![Build Status](https://travis-ci.org/AlgoProjectH1/application.svg)](https://travis-ci.org/AlgoProjectH1/application) "
+[![Heroku EU](https://img.shields.io/badge/heroku eu-online-green.svg)](https://getswipe.herokuapp.com/)
 
 
 ## Workflow
