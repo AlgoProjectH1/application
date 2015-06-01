@@ -21,9 +21,23 @@ var UserController = {
         $('#login-loader .btn-loading').addClass('active');
         $('#login-loader button').html('Connexion en cours');
 
-        setTimeout(function () {
-            $('#login-loader .btn-loading').removeClass('active');
-            $('#login-loader button').html('Connexion');
-        }, 3000);
+        Container.get('UserApi').login(email, password, {
+            success: UserController._eventLoginSuccess,
+            failure: UserController._eventLoginFail,
+            after:   UserController._eventLoginAfter
+        });
+    }
+
+    _eventLoginSuccess: function (token) {
+        alert(token);
+    }
+
+    _eventLoginFail: function (error) {
+        alert(error);
+    }
+
+    _eventLoginAfter: function () {
+        $('#login-loader .btn-loading').removeClass('active');
+        $('#login-loader button').html('Connexion');
     }
 }
