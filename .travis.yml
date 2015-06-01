@@ -31,6 +31,8 @@ after_success:
   - yes | heroku keys:add
   # Clone Heroku deployment repo to dist folder
   - git clone git@heroku.com:getswipe.git app_prod
+  # Remove content
+  - rm app_prod/*
   # Build
   - gulp prod
   # Commit and Push dist folder to Heroku
