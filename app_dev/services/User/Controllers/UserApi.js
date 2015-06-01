@@ -12,10 +12,12 @@ class UserApi {
      * @param object callbacks
      */
     login(email, password, callbacks) {
-        new Request(this.url +'/login?apiKey='+ this.key)
+        new Request(this.url +'/login?key='+ this.key)
             .data('email', email)
             .data('password', password)
-            .success(function () {
+            .success(function (response) {
+                var response = JSON.parse(response);
+
                 if (response.error === true){
                     callbacks.failure(response.message);
                 } else {
