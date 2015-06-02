@@ -16,7 +16,7 @@ class UserApi {
             .data('email', email)
             .data('password', password)
             .success(function (response) {
-                var response = JSON.parse(response);
+                response = JSON.parse(response);
 
                 if (response.error === true){
                     callbacks.failure(response.message);
@@ -28,5 +28,19 @@ class UserApi {
                     callbacks.after();
             })
             .POST();
+    }
+
+    checkToken(token, callbacks) {
+        new Request(this.url +'/token?token='+ token +'&key='+ this.key)
+            .success(function(response) {
+                response = JSON.parse(response);
+
+                if (response.error === true) {
+                    callbacks.fail();
+                } else {
+                    callbacks.success();
+                }
+            })
+            .GET();
     }
 }
