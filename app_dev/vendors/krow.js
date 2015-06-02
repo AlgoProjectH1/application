@@ -35,40 +35,38 @@ var HttpRequest = function HttpRequest() {
 };
 
 var HttpResponse = (function () {
-    function HttpResponse(loc) {
+    function HttpResponse() {
         _classCallCheck(this, HttpResponse);
-
-        this.location = loc;
-        this.onURIChange = function () {};
     }
 
     _createClass(HttpResponse, [{
         key: 'setURI',
         value: function setURI(uri, params) {
             this.set('hash', uri);
-
-            // Call an event listener on URIChange (with params I want to pass)
-            this.onURIChange();
         }
     }, {
         key: 'getURI',
         value: function getURI() {
-            return this.get('hash').replace('#', '');
+            var uri = this.get('hash').replace('#', '');
+
+            if (uri == '') uri = '/';
+
+            return uri;
         }
     }, {
         key: 'onURIChange',
         value: function onURIChange(callback) {
-            this.onURIChange = callback;
+            window.addEventListener('haschange', callback);
         }
     }, {
         key: 'get',
         value: function get(key) {
-            return this.location[key];
+            return location[key];
         }
     }, {
         key: 'set',
         value: function set(key, value) {
-            this.location[key] = value;
+            location[key] = value;
         }
     }]);
 
@@ -158,6 +156,7 @@ var Request = (function () {
             fetch(this.url, options).then(function (response) {
                 if (response.ok === true) return response.text();
 
+                RequestErrorHandler.onError();
                 throw new Error(response.statusText);
             }).then(this.callback);
         }
@@ -173,7 +172,7 @@ var Request = (function () {
             var formattedBody = '';
 
             for (var key in body) {
-                formattedBody += key + '=' + body[key] +'&';
+                formattedBody += key + '=' + body[key] + '&';
             }
 
             return formattedBody;
@@ -353,7 +352,7 @@ var RouteDecoder = (function () {
             var i = 1;
             var datasToInject = {};
 
-            for (var data in this.route.datas) {
+            for (var data in this.route.options.datas) {
                 datasToInject[data] = matchedDatas[i];
                 i++;
             }
@@ -378,12 +377,50 @@ var RouteDecoder = (function () {
         /**
          *
          * Recupere le callback
+         * @return mixed
+         *
+         */
+        value: function getCallback() {
+            return this.route.callback;
+        }
+    }, {
+        key: 'execCallback',
+
+        /**
+         *
+         * Execute le callback
          * @param object parameters
          * @return mixed
          *
          */
-        value: function getCallback(parameters) {
+        value: function execCallback(parameters) {
             return this.route.callback(parameters);
+        }
+    }, {
+        key: 'getMiddleware',
+
+        /**
+         *
+         * Recupere le middleware
+         * @parameters 
+         * @return mixed
+         */
+        value: function getMiddleware(parameters) {
+            return this.route.options.middleware(this.getCallback(), parameters);
+        }
+    }, {
+        key: 'hasMiddleware',
+
+        /**
+         *
+         * Check si la route a un middleware
+         * @return boolean
+         *
+         */
+        value: function hasMiddleware() {
+            if (this.route.options.middleware) {
+                return true;
+            }return false;
         }
     }]);
 
@@ -427,13 +464,14 @@ var Router = (function () {
          *
          */
         value: function run(routesContainer) {
-            var routesMatcher = new RoutesMatcher(this.HTTP.getURI(), routesContainer.get());
+            var HTTP = this.HTTP;
 
-            routesMatcher.check();
+            window.onhashchange = function () {
+                var routesMatcher = new RoutesMatcher(HTTP.getURI(), routesContainer.get());
+                routesMatcher.check();
+            };
 
-            this.HTTP.onURIChange((function () {
-                this.run(routesContainer);
-            }).bind(this));
+            window.onhashchange();
         }
     }]);
 
@@ -537,7 +575,12 @@ var RoutesMatcher = (function () {
                 var matching = this.isMatching(currentRoute.getDecodedPath());
 
                 if (matching) {
-                    currentRoute.getCallback(currentRoute.getParameters());
+                    if (currentRoute.hasMiddleware()) {
+                        currentRoute.getMiddleware(currentRoute.getParameters());
+                    } else {
+                        currentRoute.execCallback(currentRoute.getParameters());
+                    }
+
                     return;
                 }
             }
