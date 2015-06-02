@@ -10,6 +10,7 @@ var UserController = {
         });
     },
 
+
     /**
      * When a user submit the login form
      * @element #login-form
@@ -32,7 +33,8 @@ var UserController = {
     },
 
     _eventLoginSuccess: function (token) {
-        alert(token);
+        localStorage.setItem('token', token);
+        UserController._eventCheckLoginSuccess();
     },
 
     _eventLoginFail: function (error) {
@@ -42,5 +44,15 @@ var UserController = {
     _eventLoginAfter: function () {
         $('#login-loader .btn-loading').removeClass('active');
         $('#login-loader button').html('Connexion');
+    },
+
+
+    /** Check login events **/
+    _eventCheckLoginSuccess: function () {
+        Container.get('HTTP').setURI('/overview');
+    },
+
+    _eventCheckLoginFail: function () {
+        Container.get('HTTP').setURI('/login');
     }
-}
+};
