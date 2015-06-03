@@ -15,13 +15,16 @@ class Pages {
      */
     load(page, container, callback) {
         this.loading.fadeIn();
+        $('#content').hide();
 
         if (!container)
             var container = $('#content');
 
         Container.get('Template').get(page, function (template) {
             $('#content').html(template);
-            this.loading.fadeOut();
+
+            this.loading.hide();
+            $('#content').fadeIn();
 
             callback();
         }.bind(this));
