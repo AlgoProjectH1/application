@@ -17,12 +17,14 @@ routesContainer.add(function () {
     Container.get('HTTP').setURI('/login');
 }, { path: '/' });
 
+// Login
 routesContainer.add(UserController.loginAction, {
     path: '/login',
     middleware: Container.get('UserSession').isNotLogged
 });
 
-routesContainer.add(function() {console.log('lol'); }, {
+// Overview
+routesContainer.add(UserLoggedController.overviewAction, {
     path: '/overview',
     middleware: Container.get('UserSession').isLogged
 });
