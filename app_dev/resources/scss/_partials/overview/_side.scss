@@ -20,16 +20,30 @@
                 color: #A4A4A4;
                 letter-spacing: 1px;
                 font-weight: bold;
+                position: relative;
 
-                &:hover i {
+                &:before,
+                &:after {
+                    position: absolute;
+                    top: 1px;
                     @include transition-duration(200ms);
                 }
 
-                &:hover i:nth-child(1) {
+                &:before {
+                    content: "[";
+                    left: -9px;
+                }
+
+                &:after {
+                    content: "]";
+                    right: -7px;
+                }
+
+                &:hover:before {
                     @include transform(translateX(-5px));
                 }
 
-                &:hover i:nth-child(2) {
+                &:hover:after {
                     @include transform(translateX(5px));
                 }
             }
