@@ -38,7 +38,7 @@ var UserController = {
     },
 
     _eventLoginFail: function (error) {
-        alert(error);
+        $('#login-errors').html(error).fadeIn();
     },
 
     _eventLoginAfter: function () {
