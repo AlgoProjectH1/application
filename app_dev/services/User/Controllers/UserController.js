@@ -54,5 +54,16 @@ var UserController = {
 
     _eventCheckLoginFail: function () {
         Container.get('HTTP').setURI('/login');
+    },
+
+
+
+
+    /**
+     * @url /logout
+     */
+    logoutAction: function () {
+        localStorage.removeItem('token');
+        Container.get('HTTP').setURI('/login');
     }
 };

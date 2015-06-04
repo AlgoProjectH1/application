@@ -23,6 +23,12 @@ routesContainer.add(UserController.loginAction, {
     middleware: Container.get('UserSession').isNotLogged
 });
 
+// Logout
+routesContainer.add(UserController.logoutAction, {
+    path: '/logout',
+    middleware: Container.get('UserSession').isLogged
+});
+
 // Overview
 routesContainer.add(UserLoggedController.overviewAction, {
     path: '/overview',
