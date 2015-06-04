@@ -13,14 +13,6 @@
             width: 300px;
             text-align: right;
 
-            span {
-                font-weight: bold;
-                color: #000;
-                font-size: 13px;
-                text-transform: uppercase;
-                margin-right: 10px;
-            }
-
             a {
                 font-size: 11px;
                 text-transform: uppercase;
@@ -28,6 +20,18 @@
                 color: #A4A4A4;
                 letter-spacing: 1px;
                 font-weight: bold;
+
+                &:hover i {
+                    @include transition-duration(200ms);
+                }
+
+                &:hover i:nth-child(1) {
+                    @include transform(translateX(-5px));
+                }
+
+                &:hover i:nth-child(2) {
+                    @include transform(translateX(5px));
+                }
             }
         }
 
