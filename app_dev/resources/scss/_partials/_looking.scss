@@ -1,0 +1,92 @@
+.looking-game {
+    position: fixed;
+    left: calc(50% - 200px);
+    top: calc(50vh - 165px);
+    width: 400px;
+    height: 330px;
+
+    .loading-anim {
+        width: 400px;
+        height: 300px;
+        background: url('../resources/images/loading.gif');
+        background-size: 400px 300px;
+    }
+
+    .loading-title {
+        font-size: 13px;
+        font-family: "Raleway";
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.9);
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .player {
+        position: absolute;
+        height: 50px;
+        width: 200px;
+        top: calc(165px - 25px);
+
+        &.player-left {
+            left: -200px;
+
+            img {
+                float: left;
+            }
+
+            .infos {
+                float: left;
+                margin-left: 10px;
+            }
+
+            .line {
+                right: -70px;
+            }
+        }
+
+        &.player-right {
+            right: -200px;
+
+            img {
+                float: right;
+            }
+
+            .infos {
+                float: right;
+                margin-right: 10px;
+            }
+
+            .line {
+                left: -70px;
+            }
+        }
+
+        .infos {
+            width: 60px;
+            margin-top: 10px;
+
+            h3 {
+                text-transform: uppercase;
+                margin-bottom: 5px;
+                font-weight: bold;
+                font-size: 13px;
+            }
+
+            span {
+                font-size: 11px;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.2);
+                text-transform: uppercase;
+                float: left;
+            }
+        }
+
+        .line {
+            background: #000;
+            position: absolute;
+            top: 24px;
+            height: 1px;
+            width: 130px;
+        }
+    }
+}
