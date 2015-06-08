@@ -35,5 +35,11 @@ routesContainer.add(UserLoggedController.overviewAction, {
     middleware: Container.get('UserSession').isLogged
 });
 
+// Looking for a mate
+routesContainer.add(OnlineController.lookingAction, {
+    path: '/looking',
+    middleware: Container.get('UserSession').isLogged
+});
+
 
 Routing.run(routesContainer);
