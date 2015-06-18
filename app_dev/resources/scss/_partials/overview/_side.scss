@@ -2,6 +2,48 @@
     float: right;
     width: 200px;
 
+    .user-infos {
+        margin-bottom: 20px;
+
+        .side {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                height: 40px;
+                width: 5px;
+                top: 5px;
+                left: 55px;
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            h3 {
+                font-size: 13px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                padding-top: 8px;
+            }
+
+            span {
+                color: rgba(0, 0, 0, 0.3);
+                font-weight: normal;
+            }
+        }
+
+        .badge {
+            width: 50px;
+            height: 50px;
+            float: left;
+            margin-right: 20px;
+
+            &[data-rank="1"] {
+                background: url('../resources/images/badges/rank_1.png');
+                background-size: 50px;
+            }
+        }
+    }
+
     .game-infos {
         width: 100%;
 
