@@ -23,6 +23,7 @@ GameOnlineController._eventPrivateGame = function () {
     });
 };
 
+
 /**
  * When a user click on "search for a public game"
  */

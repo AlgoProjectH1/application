@@ -1,3 +1,14 @@
 .online-content {
     width: 100%;
+
+    .overview-nav {
+
+        .item {
+            height: auto !important;
+
+            &:hover {
+                height: auto!important;
+            }
+        }
+    }
 }
