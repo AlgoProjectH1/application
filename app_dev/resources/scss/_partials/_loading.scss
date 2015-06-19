@@ -1,4 +1,5 @@
-#loading-element {
+#loading-element,
+#error-element {
     position: fixed;
     left: calc(50% - 200px);
     top: calc(50vh - 165px);
@@ -21,4 +22,17 @@
         text-transform: uppercase;
     }
 
+}
+
+
+#error-element {
+    display: none;
+
+    .loading-anim {
+        background: transparent;
+        color: rgba(0, 0, 0, 0.3);
+        text-align:center;
+        font-size: 230px;
+        font-family: Helvetica;
+    }
 }
