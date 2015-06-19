@@ -8,7 +8,7 @@
         margin-right: auto;
 
         .item {
-            height: auto;
+            height: 18px;
             width: calc(100% - 40px);
             padding-top: 15px;
             padding-bottom: 15px;
@@ -22,9 +22,10 @@
             @include transition-property(height);
             cursor: pointer;
             position: relative;
-            overflow-x: hidden;
+            overflow: hidden;
 
             &:hover {
+                height: 50px;
 
                 .description {
                     display: block;
