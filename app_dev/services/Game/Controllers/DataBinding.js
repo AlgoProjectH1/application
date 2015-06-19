@@ -25,7 +25,7 @@ class DataBinding {
      * @param array infos
      */
     updates(infos) {
-        for (info in infos) {
+        for (var info in infos) {
             this.update(info, infos[info]);
         }
     }
