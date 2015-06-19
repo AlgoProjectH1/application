@@ -35,6 +35,12 @@ routesContainer.add(UserLoggedController.overviewAction, {
     middleware: Container.get('UserSession').isLogged
 });
 
+// Online setup
+routesContainer.add(GameOnlineController.setupAction, {
+    path: '/online',
+    middleware: Container.get('UserSession').isLogged
+});
+
 // Looking for a mate
 routesContainer.add(OnlineController.lookingAction, {
     path: '/looking',
