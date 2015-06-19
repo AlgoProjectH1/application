@@ -1,5 +1,5 @@
 class UserSession {
-    
+
     /**
      * Constructor
      * @param string token
@@ -29,13 +29,13 @@ class UserSession {
      */
     isLogged(next, paramsNext) {
         var token = localStorage.getItem('token') +':computer';
-        
+
         RequestErrorHandler.onError = function () {
             localStorage.removeItem('token');
             Container.get('HTTP').setURI('/login');
         };
 
-        if (token != undefined) {
+        if (token !== undefined) {
             Container.get('UserApi').checkToken(token, {
                 fail: RequestErrorHandler.onError,
                 success: function (response) {
