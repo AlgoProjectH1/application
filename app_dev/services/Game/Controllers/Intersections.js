@@ -94,7 +94,7 @@ class Intersections {
      * @return int
      */
     get(x, y) {
-        if (!x && x != 0)
+        if (!x && x !== 0)
             return this.intersections;
 
         return this.intersections[x][y];

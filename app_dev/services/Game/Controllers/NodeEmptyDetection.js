@@ -66,13 +66,13 @@ class NodeEmptyDetection extends NodeDetection {
         var stoneDimensions = this.getDimensions(currentStone);
         var stoneFriends = this.hasFriends(stoneDimensions);
 
-        if (this.nodes[nodeIndex]['neighbors'] === undefined)
-            this.nodes[nodeIndex]['neighbors'] = {black: 0, white: 0};
+        if (this.nodes[nodeIndex].neighbors === undefined)
+            this.nodes[nodeIndex].neighbors = {black: 0, white: 0};
 
         // Put stones in node
-        this.nodes[nodeIndex]['neighbors']['black'] += this.getNeighbors(stoneDimensions, 1);
-        this.nodes[nodeIndex]['neighbors']['white'] += this.getNeighbors(stoneDimensions, 2);
-        this.nodes[nodeIndex]['stones'][currentStoneIdentifier] = currentStone;
+        this.nodes[nodeIndex].neighbors.black += this.getNeighbors(stoneDimensions, 1);
+        this.nodes[nodeIndex].neighbors.white += this.getNeighbors(stoneDimensions, 2);
+        this.nodes[nodeIndex].stones[currentStoneIdentifier] = currentStone;
         this.traversed.push(currentStoneIdentifier);
 
         for (var friend in stoneFriends) {

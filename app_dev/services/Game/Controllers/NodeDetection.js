@@ -61,7 +61,7 @@ class NodeDetection {
         for (var dimension in stoneDimensions) {
             var dimensionCoords = stoneDimensions[dimension];
             var index = dimensionCoords.x +":"+ dimensionCoords.y;
-        
+
             if (this.goban[dimensionCoords.x][dimensionCoords.y] === this.player) {
                 friends[index] = { x: dimensionCoords.x, y: dimensionCoords.y };
             }
@@ -137,15 +137,16 @@ class NodeDetection {
         var currentStone = stone;
         var currentStoneIdentifier = `${currentStone.x}:${currentStone.y}`;
 
-        if (this.hasBeenTraversed(currentStoneIdentifier))
+        if (this.hasBeenTraversed(currentStoneIdentifier)) {
             return;
-
+        }
+        
         var stoneDimensions = this.getDimensions(currentStone);
         var stoneFriends = this.hasFriends(stoneDimensions);
 
         // Put stones in node
-        this.nodes[nodeIndex]['freedom'] += this.getLiberties(stoneDimensions);
-        this.nodes[nodeIndex]['stones'][currentStoneIdentifier] = currentStone;
+        this.nodes[nodeIndex].freedom += this.getLiberties(stoneDimensions);
+        this.nodes[nodeIndex].stones[currentStoneIdentifier] = currentStone;
         this.traversed.push(currentStoneIdentifier);
 
         for (var friend in stoneFriends) {

@@ -1,5 +1,5 @@
 var Container = {
-    instances: new Object(),
+    instances: {},
 
     /**
      *
