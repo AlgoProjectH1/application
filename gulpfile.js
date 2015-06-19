@@ -22,7 +22,7 @@ var uglify      = require('gulp-uglify');
 var clean       = require('gulp-clean');
 var rename      = require('gulp-rename');
 
- 
+
 
 /** COMPILE SERVICES **/
 gulp.task('compileServices', ['lintServices'], function () {
@@ -108,13 +108,13 @@ gulp.task('moveViews', ['cleanViews'], function () {
 /** VERIFY JAVASCRIPT **/
 gulp.task('lintServices', function() {
     return gulp.src(devPath +'/services/**/+(Controllers|Models)/*.js')
-        .pipe(jshint())
+        .pipe(jshint({esnext: true}))
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
 
 
-/** RUN TESTS **/ 
+/** RUN TESTS **/
 gulp.task('tests', ['compileServices'], function () {
     return gulp.src('tests/**/*.js')
         .pipe(jasmine(jasmineConfig));
