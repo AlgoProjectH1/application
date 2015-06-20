@@ -19,10 +19,10 @@
         <!-- Side bar -->
         <div class="overview-side">
             <div class="user-infos">
-                <div class="badge" data-rank="1"></div>
+                <div class="badge" data-rank="{{ user.rank }}"></div>
                 <div class="side">
-                    <h3>Romain</h3>
-                    <span>Débutant</span>
+                    <h3>{{ user.username }}</h3>
+                    <span>{{ user.rankName }}</span>
                 </div>
 
                 <div class="clear"></div>
