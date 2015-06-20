@@ -18,7 +18,7 @@ class Pages {
         $('#content').hide();
 
         if (!container)
-            var container = $('#content');
+            container = $('#content');
 
         Container.get('Template').get(page, function (template) {
             $('#content').html(template);
