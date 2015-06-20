@@ -18,7 +18,7 @@ class UserApi {
 
         var finalURL = this.url +"/"+ url +"?key="+ this.key;
 
-        if (token !== false) finalURL += "&token="+ token;
+        if (token !== false) finalURL += "&token="+ (token +':computer');
 
         return finalURL;
     }
@@ -80,7 +80,7 @@ class UserApi {
                 if (response.error === true) {
                     callbacks.fail();
                 } else {
-                    callbacks.success();
+                    callbacks.success(response.infos);
                 }
             })
             .GET();
