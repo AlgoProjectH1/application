@@ -41,6 +41,16 @@
                 background: url('../resources/images/badges/rank_1.png');
                 background-size: 50px;
             }
+
+            &[data-rank="2"] {
+                background: url('../resources/images/badges/rank_2.png');
+                background-size: 50px;
+            }
+
+            &[data-rank="3"] {
+                background: url('../resources/images/badges/rank_3.png');
+                background-size: 50px;
+            }
         }
     }
 
