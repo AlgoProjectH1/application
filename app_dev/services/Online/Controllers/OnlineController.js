@@ -8,13 +8,33 @@ var OnlineController = {
  * @url /looking
  */
 OnlineController.lookingAction = function () {
-    Container.get('Pages').load('game.looking.hbs', $('#content'), function () {
+    Container.get('UserApi').me(localStorage.getItem('token'), {
+        success: OnlineController._successLookingGetInfos
+    });
+};
 
+
+/**
+ * When we succeeded getting user datas
+ * @param object infos
+ */
+OnlineController._successLookingGetInfos = function (infos) {
+    infos.rankName = UserLoggedController.rankNames[infos.rank];
+
+    Container.get('Template').set({
+        user: infos
+    });
+
+    Container.get('Pages').load('game.looking.hbs', $('#content'), function () {
         // Declenche l'animation
         OnlineController._lookingAnimation();
     });
 };
 
+
+/**
+ * Loading animation
+ */
 OnlineController._lookingAnimation = function () {
     OnlineController.lookingAlternance = setInterval(function () {
         var index = OnlineController.lookingIndex;
@@ -33,10 +53,15 @@ OnlineController._lookingAnimation = function () {
     }, 1500);
 };
 
+
+/**
+ * Stop loading animation
+ */
 OnlineController._removeLookingAnimation = function () {
     clearInterval(OnlineController.lookingAlternance);
     OnlineController.lookingIndex = 0;
 };
+
 
 
 /**
