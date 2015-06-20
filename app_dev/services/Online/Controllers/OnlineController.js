@@ -81,9 +81,24 @@ OnlineController.setupAction = function () {
  * When a user click on "create a new private game"
  */
 OnlineController._eventPrivateGame = function () {
-    Container.get('Pages').load('online.private.waiting.hbs', $('#content'), function () {
-
+    Container.get('UserApi').me(localStorage.getItem('token'), {
+        success: OnlineController._successWaitingGetInfos
     });
+};
+
+
+/**
+ * When we succeeded getting user datas
+ * @param object infos
+ */
+OnlineController._successWaitingGetInfos = function (infos) {
+    infos.rankName = UserLoggedController.rankNames[infos.rank];
+
+    Container.get('Template').set({
+        user: infos
+    });
+
+    Container.get('Pages').load('online.private.waiting.hbs', $('#content'), function () {});
 };
 
 
