@@ -28,7 +28,7 @@ class UserSession {
      * @param object paramsNext
      */
     isLogged(next, paramsNext) {
-        var token = localStorage.getItem('token') +':computer';
+        var token = localStorage.getItem('token');
 
         RequestErrorHandler.onError = function () {
             localStorage.removeItem('token');
