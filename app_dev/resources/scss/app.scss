@@ -7,10 +7,6 @@
 @import "_partials/loading";
 
 
-// IN GAME
-@import "_partials/ingame";
-
-
 // LOGIN
 @import "_partials/login/form";
 @import "_partials/login/header";
@@ -25,3 +21,4 @@
 // GAME
 @import "_partials/looking";
 @import "_partials/game/online";
+@import "_partials/game/ingame";
