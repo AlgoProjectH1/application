@@ -30,12 +30,7 @@ SocketController.init = function () {
     var events = this.events;
 
     for (var event in events) {
-        this.connection.on(event, function (datas) {
-            if (datas.charAt(0) === "{" && datas.charAt((datas.length - 1)) == "}")
-                datas = JSON.parse(datas);
-
-            events[event](datas);
-        });
+        this.connection.on(event, events[event]);
     }
 };
 
