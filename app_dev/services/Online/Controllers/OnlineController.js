@@ -5,16 +5,6 @@ var OnlineController = {
 
 
 /**
- * @url /looking
- */
-OnlineController.lookingAction = function () {
-    Container.get('UserApi').me(localStorage.getItem('token'), {
-        success: OnlineController._successLookingGetInfos
-    });
-};
-
-
-/**
  * When we succeeded getting user datas
  * @param object infos
  */
@@ -127,7 +117,7 @@ OnlineController._successWaitingGetInfos = function (infos) {
 
     Container.get('Pages').load('online.private.waiting.hbs', $('#content'), function () {
         // Event listeners
-        $('#looking-cancel').on('click', OnlineController._eventLookingCancel);
+        $('#waiting-cancel').on('click', OnlineController._eventLookingCancel);
     });
 };
 
@@ -136,14 +126,21 @@ OnlineController._successWaitingGetInfos = function (infos) {
  * When a user click on "search for a public game"
  */
 OnlineController._eventPublicGame = function () {
-    Container.get('HTTP').setURI('/looking');
+    Container.get('UserApi').me(localStorage.getItem('token'), {
+        success: OnlineController._successLookingGetInfos
+    });
 };
 
+
+
+/*****************/
+/* SOCKET EVENTS */
+/******************/
 
 /**
  * When a match is found
  * @param object infos
  */
 OnlineController.matchFoundEvent = function (infos) {
-    console.log(infos);
+    Container.get('Pages').load('game.play.hbs', $('#content'), function () {});
 };
