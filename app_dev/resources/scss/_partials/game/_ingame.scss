@@ -1,0 +1,74 @@
+$items: 12;
+$itemsWidth: 30px;
+
+.game-container {
+    margin-top: calc(50vh - 225px);
+    height: 450px;
+}
+
+.game-left {
+    width: $itemsWidth * $items;
+    float: left;
+}
+
+#goban_container {
+    width: $itemsWidth * $items;
+    height: $itemsWidth * $items;
+    position: relative;
+}
+
+#goban {
+    width: 100%;
+    height: $itemsWidth * $items;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#goban td {
+    height: 30px;
+    width: 30px;
+    border: solid 1px #979998;
+}
+
+#goban tr:nth-child(odd) td:nth-child(odd),
+#goban tr:nth-child(even) td:nth-child(even) {
+    background: #dedede;
+}
+
+#goban tr:nth-child(even) td:nth-child(odd),
+#goban tr:nth-child(odd) td:nth-child(even) {
+    background: white;
+}
+
+
+
+#elements {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: calc(100% + 13px);
+}
+
+#elements div {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+#elements div:hover {
+    cursor: pointer;
+}
+
+#elements div.black {
+    background: black;
+}
+
+#elements div.white {
+    background: #FAFAFA;
+    box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.05),
+                inset 0px 1px 0px rgba(0, 0, 0, 0.05),
+                inset -1px 0px 0px rgba(0, 0, 0, 0.05),
+                inset 0px -1px 0px rgba(0, 0, 0, 0.05);
+}
