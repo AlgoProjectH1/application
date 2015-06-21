@@ -57,17 +57,20 @@ $itemsWidth: 33px;
     width: 32px;
     height: 32px;
     border-radius: 50%;
+    @include transition-duration(60ms);
 }
 
 #elements div:hover {
     cursor: pointer;
 }
 
-#elements div.black {
+#elements div.black,
+#elements.black div.null:hover {
     background: black;
 }
 
-#elements div.white {
+#elements div.white,
+#elements.white div.null:hover {
     background: #FAFAFA;
     box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.05),
                 inset 0px 1px 0px rgba(0, 0, 0, 0.05),
