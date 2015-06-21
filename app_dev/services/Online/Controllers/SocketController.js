@@ -18,7 +18,7 @@ SocketController.connect = function (host) {
  * Disconnect from the server
  */
 SocketController.disconnect = function () {
-    this.send('disconnect');
+    this.send('search:cancel');
     this.connection = null;
 };
 
