@@ -8,6 +8,8 @@ var OnlineController = {
  * @url /looking
  */
 OnlineController.lookingAction = function () {
+    SocketController.on('search:found', function (infos) { console.log(infos); });
+
     Container.get('UserApi').me(localStorage.getItem('token'), {
         success: OnlineController._successLookingGetInfos
     });
@@ -21,6 +23,9 @@ OnlineController.lookingAction = function () {
 OnlineController._successLookingGetInfos = function (infos) {
     infos.rankName = UserLoggedController.rankNames[infos.rank];
 
+    // Open socket.io connection
+    SocketController.connect(Apis.matching.url);
+
     Container.get('Template').set({
         user: infos
     });
@@ -28,6 +33,14 @@ OnlineController._successLookingGetInfos = function (infos) {
     Container.get('Pages').load('game.looking.hbs', $('#content'), function () {
         // Declenche l'animation
         OnlineController._lookingAnimation();
+
+        // Send search event
+        SocketController.send('search:normal', {
+            token: localStorage.getItem('token'),
+            username: infos.username,
+            picture: infos.picture,
+            rank: infos.rank
+        });
     });
 };
 
