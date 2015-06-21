@@ -1,4 +1,6 @@
+/**********/
 /** Init **/
+/**********/
 Container.add('HTTP', new HttpResponse());
 Container.add('Template', new Template('templates/'));
 Container.add('Pages', new Pages());
@@ -12,7 +14,10 @@ var Routing = new Router(Container.get('HTTP'));
 var routesContainer = new RoutesContainer();
 
 
+
+/************/
 /** Routes **/
+/************/
 routesContainer.add(function () {
     Container.get('HTTP').setURI('/login');
 }, { path: '/' });
@@ -47,5 +52,13 @@ routesContainer.add(OnlineController.lookingAction, {
     middleware: Container.get('UserSession').isLogged
 });
 
-
+// Launch the router
 Routing.run(routesContainer);
+
+
+
+/*******************/
+/** Socket Events **/
+/*******************/
+// When a match is found
+SocketController.on('search:found', OnlineController.matchFoundEvent);
