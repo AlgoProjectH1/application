@@ -27,8 +27,15 @@ SocketController.disconnect = function () {
  * Init the event listeners
  */
 SocketController.init = function () {
-    for (var event in this.events) {
-        this.connection.on(event, this.events[event]);
+    var events = this.events;
+
+    for (var event in events) {
+        this.connection.on(event, function (datas) {
+            if (datas.charAt(0) === "{" && datas.charAt((datas.length - 1)) == "}")
+                datas = JSON.parse(datas);
+
+            events[event](datas);
+        });
     }
 };
 
