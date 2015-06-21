@@ -137,6 +137,7 @@ $itemsWidth: 33px;
         padding-bottom: 10px;
         cursor: pointer;
         @include transition-duration(200ms);
+        outline: none;
 
         &.rules {
             background: #2066a4;
