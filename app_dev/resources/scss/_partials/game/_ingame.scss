@@ -121,7 +121,7 @@ $itemsWidth: 33px;
 
 .game-controls {
     display: flex;
-    margin-top: 50px;
+    margin-top: 60px;
 
     button {
         border: none;
@@ -132,17 +132,31 @@ $itemsWidth: 33px;
         text-align: center;
         padding-top: 10px;
         padding-bottom: 10px;
+        cursor: pointer;
+        @include transition-duration(200ms);
 
         &.rules {
             background: #2066a4;
+
+            &:hover {
+                background: #1d5f99;
+            }
         }
 
         &.giveup {
             background: #ef7d4b;
+
+            &:hover {
+                background: #d76f41;
+            }
         }
 
         &.leave {
             background: #b9485a;
+
+            &:hover {
+                background: #ac4051;
+            }
         }
     }
 }
