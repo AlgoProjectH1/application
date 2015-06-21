@@ -15,6 +15,15 @@ SocketController.connect = function (host) {
 
 
 /**
+ * Disconnect from the server
+ */
+SocketController.disconnect = function () {
+    this.send('disconnect');
+    this.connection = null;
+};
+
+
+/**
  * Init the event listeners
  */
 SocketController.init = function () {
