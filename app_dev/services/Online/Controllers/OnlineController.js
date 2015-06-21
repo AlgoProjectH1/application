@@ -32,6 +32,9 @@ OnlineController._successLookingGetInfos = function (infos) {
         // Declenche l'animation
         OnlineController._lookingAnimation();
 
+        // Event listeners
+        $('#looking-cancel').on('click', OnlineController._eventLookingCancel);
+
         // Send search event
         SocketController.send('search:normal', {
             token: localStorage.getItem('token'),
@@ -74,6 +77,16 @@ OnlineController._removeLookingAnimation = function () {
 };
 
 
+/**
+ * When the user click on "cancel"
+ */
+OnlineController._eventLookingCancel = function () {
+    SocketController.disconnect();
+    OnlineController._removeLookingAnimation();
+    Container.get('HTTP').setURI('/overview');
+};
+
+
 
 /**
  * Online mode selection page
@@ -105,11 +118,17 @@ OnlineController._eventPrivateGame = function () {
 OnlineController._successWaitingGetInfos = function (infos) {
     infos.rankName = UserLoggedController.rankNames[infos.rank];
 
+    // Open socket.io connection
+    SocketController.connect(Apis.matching.url);
+
     Container.get('Template').set({
         user: infos
     });
 
-    Container.get('Pages').load('online.private.waiting.hbs', $('#content'), function () {});
+    Container.get('Pages').load('online.private.waiting.hbs', $('#content'), function () {
+        // Event listeners
+        $('#looking-cancel').on('click', OnlineController._eventLookingCancel);
+    });
 };
 
 
