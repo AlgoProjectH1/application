@@ -145,6 +145,10 @@ OnlineController._eventPublicGame = function () {
  */
 OnlineController.matchFoundEvent = function (infos) {
     Container.get('Pages').load('game.play.hbs', $('#content'), function () {
-        console.log(infos);
+        var GobanInstance = new Goban(13, $('#goban'));
+        var IntersectionsInstance = new Intersections(GobanInstance.getSize(), true);
+
+        GobanInstance.draw();
+        IntersectionsInstance.draw();
     });
 };
