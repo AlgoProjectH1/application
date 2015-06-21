@@ -8,8 +8,6 @@ var OnlineController = {
  * @url /looking
  */
 OnlineController.lookingAction = function () {
-    SocketController.on('search:found', function (infos) { console.log(infos); });
-
     Container.get('UserApi').me(localStorage.getItem('token'), {
         success: OnlineController._successLookingGetInfos
     });
@@ -120,4 +118,13 @@ OnlineController._successWaitingGetInfos = function (infos) {
  */
 OnlineController._eventPublicGame = function () {
     Container.get('HTTP').setURI('/looking');
+};
+
+
+/**
+ * When a match is found
+ * @param object infos
+ */
+OnlineController.matchFoundEvent = function (infos) {
+    console.log(infos);
 };
