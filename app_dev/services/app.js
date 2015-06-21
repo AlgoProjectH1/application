@@ -46,12 +46,6 @@ routesContainer.add(OnlineController.setupAction, {
     middleware: Container.get('UserSession').isLogged
 });
 
-// Looking for a mate
-routesContainer.add(OnlineController.lookingAction, {
-    path: '/looking',
-    middleware: Container.get('UserSession').isLogged
-});
-
 // Launch the router
 Routing.run(routesContainer);
 
@@ -62,3 +56,6 @@ Routing.run(routesContainer);
 /*******************/
 // When a match is found
 SocketController.on('search:found', OnlineController.matchFoundEvent);
+
+// When the server kick us off
+SocketController.on('game:disconnect', GameController.disconnectEvent);
