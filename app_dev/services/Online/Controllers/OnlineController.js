@@ -150,5 +150,8 @@ OnlineController.matchFoundEvent = function (infos) {
 
         GobanInstance.draw();
         IntersectionsInstance.draw();
+
+        // event listeners
+        $('#game-quit').on('click', GameController._eventQuitGame);
     });
 };
