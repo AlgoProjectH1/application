@@ -26,12 +26,14 @@ OnlineController._successLookingGetInfos = function (infos) {
         $('#looking-cancel').on('click', OnlineController._eventLookingCancel);
 
         // Send search event
-        SocketController.send('search:normal', {
-            token: localStorage.getItem('token'),
-            username: infos.username,
-            picture: infos.picture,
-            rank: infos.rank
-        });
+        setTimeout(function () {
+            SocketController.send('search:normal', {
+                token: localStorage.getItem('token'),
+                username: infos.username,
+                picture: infos.picture,
+                rank: infos.rank
+            });
+        }, 1000);
     });
 };
 
@@ -142,5 +144,7 @@ OnlineController._eventPublicGame = function () {
  * @param object infos
  */
 OnlineController.matchFoundEvent = function (infos) {
-    Container.get('Pages').load('game.play.hbs', $('#content'), function () {});
+    Container.get('Pages').load('game.play.hbs', $('#content'), function () {
+        console.log(infos);
+    });
 };
