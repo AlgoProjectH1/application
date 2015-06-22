@@ -88,6 +88,16 @@ $itemsWidth: 33px;
     width: 100%;
     margin-bottom: 15px;
 
+    #game-log {
+        overflow-y: scroll;
+        
+        div {
+            margin-bottom: 5px;
+            font-family: "Source Sans Pro";
+            text-transform: uppercase;
+        }
+    }
+
     h3 {
         padding: 5px;
         padding-left: 10px;
