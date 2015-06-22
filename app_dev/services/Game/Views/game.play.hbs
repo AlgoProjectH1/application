@@ -21,7 +21,12 @@
                     <div class="stone"></div>
                 </div>
 
-                <div class="score" id="score-adversary" data-color="{{ adversary.color }}" data-turn="{{#unless me.turn }}true{{ else }}false{{/unless}}">
+                <div class="score scores">
+                    <span class="time">03:00</span>
+                    <h5>0</h5> <span class="score-separation">-</span> <h5>0</h5>
+                </div>
+
+                <div class="score right" id="score-adversary" data-color="{{ adversary.color }}" data-turn="{{#unless me.turn }}true{{ else }}false{{/unless}}">
                     <h4>{{ adversary.username }}</h4>
                     <div class="stone"></div>
                 </div>
