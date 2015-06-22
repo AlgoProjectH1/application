@@ -46,6 +46,13 @@ routesContainer.add(OnlineController.setupAction, {
     middleware: Container.get('UserSession').isLogged
 });
 
+// Join a private game
+routesContainer.add(OnlineController.joinAction, {
+    path: '/join/{game}',
+    datas: { game: '([a-z0-9]+)' },
+    middleware: Container.get('UserSession').isLogged
+});
+
 // Launch the router
 Routing.run(routesContainer);
 

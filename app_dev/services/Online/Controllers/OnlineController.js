@@ -133,6 +133,40 @@ OnlineController._eventPublicGame = function () {
 };
 
 
+/**
+ * /join/{gameID}
+ */
+OnlineController.joinAction = function (params) {
+    Container.get('UserApi').me(localStorage.getItem('token'), {
+        success: function (infos) { OnlineController._successJoinGetInfos(params.game, infos); }
+    });
+};
+
+
+/**
+ * When we succeeded getting user datas
+ * @param object infos
+ */
+OnlineController._successJoinGetInfos = function (game, infos) {
+    infos.rankName = UserLoggedController.rankNames[infos.rank];
+
+    // Open socket.io connection
+    SocketController.connect(Apis.matching.url);
+
+    // Send private create event
+    setTimeout(function () {
+        SocketController.send('search:join', {
+            game: game,
+            user: {
+                token: localStorage.getItem('token'),
+                username: infos.username,
+                picture: infos.picture,
+                rank: infos.rank
+            }
+        });
+    }, 1000);
+};
+
 
 /*****************/
 /* SOCKET EVENTS */
@@ -145,6 +179,8 @@ OnlineController._eventPublicGame = function () {
 OnlineController.matchFoundEvent = function (infos) {
     infos = JSON.parse(infos);
     infos.me.turn = (infos.me.color == 'black') ? true : false;
+
+    console.log(infos.me);
 
     Container.get('Template').set({
         me: infos.me,
