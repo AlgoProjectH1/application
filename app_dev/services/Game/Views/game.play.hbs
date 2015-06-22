@@ -2,24 +2,36 @@
     <div class="game-left">
         <div id="goban_container">
             <div id="goban" class="game-goban"></div>
-            <div id="elements" class="black"></div>
+            <div id="elements" class="{{ me.color }}"></div>
         </div>
 
         <div class="game-controls">
             <button class="rules" id="game-rules">Regles</button>
-            <button class="giveup">Abandonner</button>
+            <button class="giveup">Passer son tour</button>
             <button class="leave" id="game-quit">Quitter</button>
         </div>
     </div>
 
     <div class="game-right">
         <div class="game-box game-infos">
-            <h3>Multijoueur</h3>
-            <div class="game-content"></div>
+            <h3>Informations générales</h3>
+            <div class="game-content">
+                <div class="score" id="score-me" data-color="{{ me.color }}" data-turn="{{#if me.turn }}true{{ else }}false{{/if}}">
+                    <h4>{{ me.username }}</h4>
+                    <div class="stone"></div>
+                </div>
+
+                <div class="score" id="score-adversary" data-color="{{ adversary.color }}" data-turn="{{#unless me.turn }}true{{ else }}false{{/unless}}">
+                    <h4>{{ adversary.username }}</h4>
+                    <div class="stone"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
         </div>
 
         <div class="game-box game-history">
-            <h3>Informations de partie</h3>
+            <h3>Déroulement de la partie</h3>
             <div class="game-content"></div>
         </div>
     </div>

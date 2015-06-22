@@ -144,6 +144,14 @@ OnlineController._eventPublicGame = function () {
  * @param object infos
  */
 OnlineController.matchFoundEvent = function (infos) {
+    infos = JSON.parse(infos);
+    infos.me.turn = (infos.me.color == 'black') ? true : false;
+
+    Container.get('Template').set({
+        me: infos.me,
+        adversary: infos.adversary
+    });
+
     Container.get('Pages').load('game.play.hbs', $('#content'), function () {
         var GobanInstance = new Goban(13, $('#goban'));
         var IntersectionsInstance = new Intersections(GobanInstance.getSize(), true);
