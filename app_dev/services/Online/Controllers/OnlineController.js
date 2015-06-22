@@ -154,7 +154,7 @@ OnlineController.matchFoundEvent = function (infos) {
 
     Container.get('Pages').load('game.play.hbs', $('#content'), function () {
         var GobanInstance = new Goban(13, $('#goban'));
-        var IntersectionsInstance = new Intersections(GobanInstance.getSize(), true);
+        var IntersectionsInstance = new Intersections(GobanInstance.getSize(), false);
 
         GobanInstance.draw();
         IntersectionsInstance.draw();
