@@ -152,5 +152,8 @@ OnlineController.matchFoundEvent = function (infos) {
         adversary: infos.adversary
     });
 
+    // Set Players
+    GameController.setPlayers(infos.me, infos.adversary);
+
     Container.get('Pages').load('game.play.hbs', $('#content'), GameController.init);
 };
