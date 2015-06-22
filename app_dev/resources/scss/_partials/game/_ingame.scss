@@ -120,6 +120,44 @@ $itemsWidth: 33px;
             height: 150px;
         }
     }
+
+    .score {
+        float: left;
+        width: 150px;
+        margin-right: 10px;
+        text-align: center;
+
+        &:nth-child(2) { margin: 0; }
+
+        h4 {
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        &[data-color="black"] .stone { background: black; }
+        &[data-color="white"] .stone { background: white; }
+
+        &[data-turn="true"] .stone:before {
+            content: "";
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            width: 16px;
+            height: 16px;
+            background: #ee1b22;
+            @include border-radius(50%);
+        }
+
+        .stone {
+            position: relative;
+            @include border-radius(50%);
+            width: 30px;
+            height: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 }
 
 .game-controls {
