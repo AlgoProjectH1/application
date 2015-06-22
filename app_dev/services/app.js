@@ -60,6 +60,9 @@ SocketController.on('search:found', OnlineController.matchFoundEvent);
 // When the server refresh the goban
 SocketController.on('game:refresh', GameController.refreshEvent);
 
+// When the user skipped
+SocketController.on('game:skipped', GameController.skippedEvent);
+
 
 // When the server kick us off
 SocketController.on('game:disconnect', GameController.disconnectEvent);

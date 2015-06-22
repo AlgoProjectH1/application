@@ -24,6 +24,7 @@ GameController.init = function () {
 
     // event listeners
     $('#game-quit').on('click', GameController._eventQuitGame);
+    $('#game-skip').on('click', GameController._eventSkip);
     $('#elements').on('click', 'div', GameController._eventMove);
 };
 
@@ -135,6 +136,18 @@ GameController._eventMove = function () {
 
 
 /**
+ * When the user skip
+ */
+GameController._eventSkip = function () {
+    if (GameController.turn != GameController.players.me.infos.color)
+        return;
+
+    GameController.changeTurn();
+    SocketController.send('game:skip');
+};
+
+
+/**
  * When we are kicked off
  */
 GameController.disconnectEvent = function () {
@@ -161,7 +174,26 @@ GameController.refreshEvent = function (infos) {
     if (GameController.turn != nextTurn) {
         GameController.changeTurn();
     }
-    
+
     GameController.intersections.intersections = infos.goban;
     GameController.intersections.draw();
+};
+
+
+/**
+ * When the other skipped his turn
+ */
+GameController.skippedEvent = function (infos) {
+    infos = JSON.parse(infos);
+    var nextTurn = (infos.next === 1) ? 'black' : 'white';
+
+    if (GameController.players.me.infos.color == nextTurn) {
+        $('#elements').attr('data-turn', true);
+    } else {
+        $('#elements').attr('data-turn', false);
+    }
+
+    if (GameController.turn != nextTurn) {
+        GameController.changeTurn();
+    }
 };
