@@ -152,14 +152,5 @@ OnlineController.matchFoundEvent = function (infos) {
         adversary: infos.adversary
     });
 
-    Container.get('Pages').load('game.play.hbs', $('#content'), function () {
-        var GobanInstance = new Goban(13, $('#goban'));
-        var IntersectionsInstance = new Intersections(GobanInstance.getSize(), false);
-
-        GobanInstance.draw();
-        IntersectionsInstance.draw();
-
-        // event listeners
-        $('#game-quit').on('click', GameController._eventQuitGame);
-    });
+    Container.get('Pages').load('game.play.hbs', $('#content'), GameController.init);
 };

@@ -1,4 +1,23 @@
-var GameController = {};
+var GameController = {
+    goban: "",
+    intersections: ""
+};
+
+
+/**
+ * Game init
+ */
+GameController.init = function () {
+    GameController.goban = new Goban(13, $('#goban'));
+    GameController.intersections = new Intersections(GameController.goban.getSize(), false);
+
+    GameController.goban.draw();
+    GameController.intersections.draw();
+
+    // event listeners
+    $('#game-quit').on('click', GameController._eventQuitGame);
+};
+
 
 /**
  * When the user click on "Quitter"
