@@ -57,5 +57,9 @@ Routing.run(routesContainer);
 // When a match is found
 SocketController.on('search:found', OnlineController.matchFoundEvent);
 
+// When the server refresh the goban
+SocketController.on('game:refresh', GameController.refreshEvent);
+
+
 // When the server kick us off
 SocketController.on('game:disconnect', GameController.disconnectEvent);

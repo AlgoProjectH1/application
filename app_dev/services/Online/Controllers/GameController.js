@@ -123,3 +123,14 @@ GameController.disconnectEvent = function () {
     GameController.resetPlayers();
     Container.get('HTTP').setURI('/overview');
 };
+
+
+/**
+ * When the server refresh the goban
+ * @param object infos
+ */
+GameController.refreshEvent = function (infos) {
+    infos = JSON.parse(infos);
+
+    console.log(infos);
+};
