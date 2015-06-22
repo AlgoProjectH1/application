@@ -148,8 +148,6 @@ OnlineController.joinAction = function (params) {
  * @param object infos
  */
 OnlineController._successJoinGetInfos = function (game, infos) {
-    infos.rankName = UserLoggedController.rankNames[infos.rank];
-
     // Open socket.io connection
     SocketController.connect(Apis.matching.url);
 
@@ -197,6 +195,7 @@ OnlineController.matchFoundEvent = function (infos) {
  */
 OnlineController.privateCreatedEvent = function (infos) {
     infos = JSON.parse(infos);
+    infos.rankName = UserLoggedController.rankNames[infos.rank];
 
     Container.get('Template').set({
         user: infos.user,
