@@ -402,7 +402,7 @@ var RouteDecoder = (function () {
         /**
          *
          * Recupere le middleware
-         * @parameters 
+         * @parameters
          * @return mixed
          */
         value: function getMiddleware(parameters) {
@@ -576,9 +576,9 @@ var RoutesMatcher = (function () {
 
                 if (matching) {
                     if (currentRoute.hasMiddleware()) {
-                        currentRoute.getMiddleware(currentRoute.getParameters());
+                        currentRoute.getMiddleware(currentRoute.getParameters(matching));
                     } else {
-                        currentRoute.execCallback(currentRoute.getParameters());
+                        currentRoute.execCallback(currentRoute.getParameters(matching));
                     }
 
                     return;
