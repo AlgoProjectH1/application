@@ -113,13 +113,12 @@ OnlineController._successWaitingGetInfos = function (infos) {
     // Open socket.io connection
     SocketController.connect(Apis.matching.url);
 
-    Container.get('Template').set({
-        user: infos
-    });
-
-    Container.get('Pages').load('online.private.waiting.hbs', $('#content'), function () {
-        // Event listeners
-        $('#waiting-cancel').on('click', OnlineController._eventLookingCancel);
+    // Send private create event
+    SocketController.send('search:create', {
+        token: localStorage.getItem('token'),
+        username: infos.username,
+        picture: infos.picture,
+        rank: infos.rank
     });
 };
 
@@ -156,4 +155,22 @@ OnlineController.matchFoundEvent = function (infos) {
     GameController.setPlayers(infos.me, infos.adversary);
 
     Container.get('Pages').load('game.play.hbs', $('#content'), GameController.init);
+};
+
+
+/**
+ * When the private game is created
+ */
+OnlineController.privateCreatedEvent = function (infos) {
+    infos = JSON.parse(infos);
+
+    Container.get('Template').set({
+        user: infos.user,
+        game: infos.game
+    });
+
+    Container.get('Pages').load('online.private.waiting.hbs', $('#content'), function () {
+        // Event listeners
+        $('#waiting-cancel').on('click', OnlineController._eventLookingCancel);
+    });
 };

@@ -57,6 +57,9 @@ Routing.run(routesContainer);
 // When a match is found
 SocketController.on('search:found', OnlineController.matchFoundEvent);
 
+// When a private is created
+SocketController.on('search:waiting', OnlineController.privateCreatedEvent);
+
 // When the server refresh the goban
 SocketController.on('game:refresh', GameController.refreshEvent);
 
