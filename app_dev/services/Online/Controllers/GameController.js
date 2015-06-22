@@ -160,7 +160,7 @@ GameController._eventSkip = function () {
  * @param string message
  */
 GameController._log = function (message) {
-    $('#game-log').append('<div><b>['+ GameController.timeGame.current +']</b> '+ message +'</div>');
+    $('#game-log').append('<div><b>['+ GameController.timeGame.current +']</b>&nbsp;&nbsp;'+ message +'</div>');
     $('#game-log').scrollTop($('#game-log').height());
 };
 
