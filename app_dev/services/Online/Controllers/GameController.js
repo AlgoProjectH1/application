@@ -24,6 +24,7 @@ GameController.init = function () {
 
     // event listeners
     $('#game-quit').on('click', GameController._eventQuitGame);
+    $('#elements').on('click', 'td', GameController._eventMove);
 };
 
 
@@ -112,6 +113,24 @@ GameController._eventQuitGame = function () {
     SocketController.disconnect();
     GameController.resetPlayers();
     Container.get('HTTP').setURI('/overview');
+};
+
+
+/**
+ * When the user make a move
+ */
+GameController._eventMove = function () {
+    if (GameController.turn != GameController.players.me.infos.color)
+        return;
+
+    var x = $(this).attr('data-x');
+    var y = $(this).attr('data-y');
+
+    GameController.changeTurn();
+    SocketController.send('game:play', JSON.stringify({
+        x: x,
+        y: y
+    }));
 };
 
 
