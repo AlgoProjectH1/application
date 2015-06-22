@@ -123,11 +123,10 @@ $itemsWidth: 33px;
 
     .score {
         float: left;
-        width: 150px;
-        margin-right: 10px;
+        width: 100px;
         text-align: center;
 
-        &:nth-child(2) { margin: 0; }
+        &:nth-child(2) { float: right; }
 
         h4 {
             text-transform: uppercase;
@@ -141,10 +140,10 @@ $itemsWidth: 33px;
         &[data-turn="true"] .stone:before {
             content: "";
             position: absolute;
-            top: 7px;
-            left: 7px;
-            width: 16px;
-            height: 16px;
+            top: 6px;
+            left: 6px;
+            width: 14px;
+            height: 14px;
             background: #ee1b22;
             @include border-radius(50%);
         }
@@ -152,8 +151,8 @@ $itemsWidth: 33px;
         .stone {
             position: relative;
             @include border-radius(50%);
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             margin-left: auto;
             margin-right: auto;
         }
