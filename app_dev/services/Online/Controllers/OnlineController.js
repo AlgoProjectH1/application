@@ -180,8 +180,6 @@ OnlineController.matchFoundEvent = function (infos) {
     infos = JSON.parse(infos);
     infos.me.turn = (infos.me.color == 'black') ? true : false;
 
-    console.log(infos.me);
-
     Container.get('Template').set({
         me: infos.me,
         adversary: infos.adversary
