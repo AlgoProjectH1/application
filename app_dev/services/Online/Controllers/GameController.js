@@ -5,7 +5,8 @@ var GameController = {
     turn: "black",
     timeGame: {
         interval: null,
-        start: null
+        start: null,
+        current: "00:00"
     }
 };
 
@@ -49,6 +50,7 @@ GameController.launchTimeCounter = function () {
         toDisplay += seconds;
 
         $('#game-counter').html(toDisplay);
+        GameController.timeGame.current = toDisplay;
     }, 1000);
 };
 
@@ -132,6 +134,9 @@ GameController._eventMove = function () {
         x: x,
         y: y
     }));
+
+    // Log
+    GameController._log('<b>Vous</b> avez joué en <b>'+ x +'</b>:<b>'+ y +'</b>');
 };
 
 
@@ -144,6 +149,19 @@ GameController._eventSkip = function () {
 
     GameController.changeTurn();
     SocketController.send('game:skip');
+
+    // Log
+    GameController._log('<b>Vous</b> avez <b>passé votre tour</b>');
+};
+
+
+/**
+ * Log the message
+ * @param string message
+ */
+GameController._log = function (message) {
+    $('#game-log').append('<div><b>['+ GameController.timeGame.current +']</b> '+ message +'</div>');
+    $('#game-log').scrollTop($('#game-log').height());
 };
 
 
@@ -167,6 +185,9 @@ GameController.refreshEvent = function (infos) {
 
     if (GameController.players.me.infos.color == nextTurn) {
         $('#elements').attr('data-turn', true);
+
+        // Log
+        GameController._log('<b>'+ GameController.players.adversary.infos.username +'</b> a joué en <b>'+ infos.move.x +'</b>:<b>'+ infos.move.y +'</b>');
     } else {
         $('#elements').attr('data-turn', false);
     }
@@ -189,6 +210,9 @@ GameController.skippedEvent = function (infos) {
 
     if (GameController.players.me.infos.color == nextTurn) {
         $('#elements').attr('data-turn', true);
+
+        // Log
+        GameController._log('<b>'+ GameController.players.adversary.infos.username +'</b> a <b>passé son tour</b>');
     } else {
         $('#elements').attr('data-turn', false);
     }
