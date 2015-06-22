@@ -195,7 +195,7 @@ OnlineController.matchFoundEvent = function (infos) {
  */
 OnlineController.privateCreatedEvent = function (infos) {
     infos = JSON.parse(infos);
-    infos.rankName = UserLoggedController.rankNames[infos.user.rank];
+    infos.user.rankName = UserLoggedController.rankNames[infos.user.rank];
 
     Container.get('Template').set({
         user: infos.user,
