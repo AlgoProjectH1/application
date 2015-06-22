@@ -65,12 +65,12 @@ $itemsWidth: 33px;
 }
 
 #elements div.black,
-#elements.black div.null:hover {
+#elements[data-turn="true"].black div.null:hover {
     background: black;
 }
 
 #elements div.white,
-#elements.white div.null:hover {
+#elements[data-turn="true"].white div.null:hover {
     background: #FAFAFA;
     box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.05),
                 inset 0px 1px 0px rgba(0, 0, 0, 0.05),

@@ -2,7 +2,7 @@
     <div class="game-left">
         <div id="goban_container">
             <div id="goban" class="game-goban"></div>
-            <div id="elements" class="{{ me.color }}"></div>
+            <div id="elements" class="{{ me.color }}" data-turn="{{#if me.turn }}true{{ else }}false{{/if}}"></div>
         </div>
 
         <div class="game-controls">
