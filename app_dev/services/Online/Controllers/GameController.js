@@ -131,6 +131,14 @@ GameController.disconnectEvent = function () {
  */
 GameController.refreshEvent = function (infos) {
     infos = JSON.parse(infos);
+    var nextTurn = (infos.next === 1) ? 'black' : 'white';
 
-    console.log(infos);
+    if (GameController.players.me.infos.color == nextTurn) {
+        $('#elements').attr('data-turn', true);
+    } else {
+        $('#elements').attr('data-turn', false);
+    }
+
+    GameController.intersections.intersections = infos.goban;
+    GameController.intersections.draw();
 };
