@@ -24,7 +24,7 @@ GameController.init = function () {
 
     // event listeners
     $('#game-quit').on('click', GameController._eventQuitGame);
-    $('#elements').on('click', 'td', GameController._eventMove);
+    $('#elements').on('click', 'div', GameController._eventMove);
 };
 
 
@@ -158,6 +158,10 @@ GameController.refreshEvent = function (infos) {
         $('#elements').attr('data-turn', false);
     }
 
+    if (GameController.turn != nextTurn) {
+        GameController.changeTurn();
+    }
+    
     GameController.intersections.intersections = infos.goban;
     GameController.intersections.draw();
 };
