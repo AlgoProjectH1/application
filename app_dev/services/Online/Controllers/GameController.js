@@ -171,8 +171,9 @@ GameController._log = function (message) {
  */
 GameController._updateCaptures = function (captures) {
     for (var color in captures) {
-        var colorName = (color === 1) ? 'black' : 'white';
-        $('[data-score="'+ colorName +'"]').html(captures[color]);
+        var colorName = (color == 1) ? 'black' : 'white';
+        console.log(colorName, captures[color]);
+        $('h5[data-score="'+ colorName +'"]').html(captures[color]);
     }
 };
 
