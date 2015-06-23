@@ -15,7 +15,8 @@ var UserController = {
      */
     signupAction: function () {
         Container.get('Pages').load('user.signup.hbs', $('#content'), function () {
-            
+            // events listeners
+            $('#signup-form').on('submit', UserController._eventSignup);
         });
     },
 
@@ -53,6 +54,43 @@ var UserController = {
     _eventLoginAfter: function () {
         $('#login-loader .btn-loading').removeClass('active');
         $('#login-loader button').html('Connexion');
+    },
+
+
+    /**
+     * When a user submit the login form
+     * @element #login-form
+     * @event submit
+     */
+    _eventSignup: function (event) {
+        event.preventDefault();
+
+        var email = $('#login-email').val();
+        var pseudo = $('#login-pseudo').val();
+        var password = $('#login-password').val();
+
+        $('#login-loader .btn-loading').addClass('active');
+        $('#login-loader button').html('Inscription en cours');
+
+        Container.get('UserApi').signup(email, pseudo, password, {
+            success: UserController._eventSignupSuccess,
+            failure: UserController._eventSignupFail,
+            after:   UserController._eventSignupAfter
+        });
+    },
+
+    _eventSignupSuccess: function (token) {
+        localStorage.setItem('token', token);
+        UserController._eventCheckLoginSuccess();
+    },
+
+    _eventSignupFail: function (error) {
+        $('#login-errors').html(error).fadeIn();
+    },
+
+    _eventSignupAfter: function () {
+        $('#login-loader .btn-loading').removeClass('active');
+        $('#login-loader button').html('Inscription');
     },
 
 
