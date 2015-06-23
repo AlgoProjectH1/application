@@ -23,7 +23,7 @@
 
                 <div class="score scores">
                     <span class="time" id="game-counter">00:00</span>
-                    <h5>0</h5> <span class="score-separation">-</span> <h5>0</h5>
+                    <h5 data-score="{{ me.color }}">0</h5> <span class="score-separation">-</span> <h5 data-score="{{ adversary.color }}">0</h5>
                 </div>
 
                 <div class="score right" id="score-adversary" data-color="{{ adversary.color }}" data-turn="{{#unless me.turn }}true{{ else }}false{{/unless}}">

@@ -166,6 +166,18 @@ GameController._log = function (message) {
 
 
 /**
+ * Update the captures
+ * @param object captures
+ */
+GameController._updateCaptures = function (captures) {
+    for (var color in captures) {
+        var colorName = (color === 1) ? 'black' : 'white';
+        $('[data-score="'+ colorName +'"]').html(captures[color]);
+    }
+};
+
+
+/**
  * When we are kicked off
  */
 GameController.disconnectEvent = function () {
@@ -196,6 +208,7 @@ GameController.refreshEvent = function (infos) {
         GameController.changeTurn();
     }
 
+    GameController._updateCaptures(infos.captures);
     GameController.intersections.intersections = infos.goban;
     GameController.intersections.draw();
 };
