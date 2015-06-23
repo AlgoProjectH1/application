@@ -112,4 +112,23 @@ class UserApi {
             })
             .GET();
     }
+
+    /**
+     * Get the user game history
+     * @param string token
+     * @param object callbacks
+     */
+    history(token, callbacks) {
+        new Request( this.buildUrl('history', token) )
+            .success(function (response) {
+                response = JSON.parse(response);
+
+                if (response.error === true) {
+                    callbacks.fail();
+                } else {
+                    callbacks.success(response.games);
+                }
+            })
+            .GET();
+    }
 }
