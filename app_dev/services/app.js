@@ -46,6 +46,12 @@ routesContainer.add(UserLoggedController.overviewAction, {
     middleware: Container.get('UserSession').isLogged
 });
 
+// History
+routesContainer.add(UserLoggedController.historyAction, {
+    path: '/history',
+    middleware: Container.get('UserSession').isLogged
+});
+
 // Online setup
 routesContainer.add(OnlineController.setupAction, {
     path: '/online',

@@ -20,6 +20,17 @@ UserLoggedController.overviewAction = function () {
 
 
 /**
+ * History page
+ * @url /overview
+ */
+UserLoggedController.historyAction = function () {
+    Container.get('UserApi').history(localStorage.getItem('token'), {
+        success: UserLoggedController._successGetHistory
+    });
+};
+
+
+/**
  * When we get the infos
  * @param object infos
  */
@@ -34,8 +45,23 @@ UserLoggedController._successGetInfos = function (infos) {
         // event listener
         $('#nav-solo-choice').on('click', UserLoggedController._eventSoloChoice);
         $('#nav-online-choice').on('click', UserLoggedController._eventOnlineChoice);
-        $('#nav-opt-choice').on('click', UserLoggedController._eventOptChoice);
+        $('#nav-history-choice').on('click', UserLoggedController._eventOptChoice);
     });
+};
+
+
+/**
+ * When we get the infos
+ * @param object infos
+ */
+UserLoggedController._successGetHistory = function (infos) {
+    Container.get('Template').set({
+        games: infos
+    });
+
+    console.log(infos);
+
+    Container.get('Pages').load('user.history.hbs', $('#content'), function () {});
 };
 
 
@@ -51,4 +77,11 @@ UserLoggedController._eventSoloChoice = function () {
  */
 UserLoggedController._eventOnlineChoice = function () {
     Container.get('HTTP').setURI('/online');
+};
+
+/**
+ * When a user click on "Historique"
+ */
+UserLoggedController._eventOptChoice = function () {
+    Container.get('HTTP').setURI('/history');
 };
