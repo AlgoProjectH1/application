@@ -10,6 +10,15 @@ var UserController = {
         });
     },
 
+    /**
+     * @url /signup
+     */
+    signupAction: function () {
+        Container.get('Pages').load('user.signup.hbs', $('#content'), function () {
+            
+        });
+    },
+
 
     /**
      * When a user submit the login form
