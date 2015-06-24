@@ -186,7 +186,30 @@ OnlineController.matchFoundEvent = function (infos) {
     // Set Players
     GameController.setPlayers(infos.me, infos.adversary);
 
-    Container.get('Pages').load('game.play.hbs', $('#content'), GameController.init);
+    // Stop anim
+    OnlineController._removeLookingAnimation();
+
+    // Delete all the other users
+    $('.player-right #player_0').removeClass('active');
+    $('.player-right #player_1').removeClass('active');
+    $('.player-right #player_2').removeClass('active');
+
+    // Update user infos
+    $('.player-right #player_0 img').attr('src', 'http://gravatar.com/avatar/'+ infos.adversary.picture +'?s=50');
+    $('.player-right #player_0 .infos h3').html(infos.adversary.username);
+    $('.player-right #player_0 .infos span').html('Débutant');
+    $('.player-right #player_0 ').addClass('active');
+
+    // Fire animation
+    $('.loading-anim').fadeOut();
+    $('.loading-title').fadeOut();
+    $('.player-left').animate({left: "-70px"});
+    $('.player-right').animate({right: "-70px"});
+
+    // Display game page
+    setTimeout(function () {
+        Container.get('Pages').load('game.play.hbs', $('#content'), GameController.init);
+    }, 1500);
 };
 
 
