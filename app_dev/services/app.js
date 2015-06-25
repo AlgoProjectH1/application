@@ -52,6 +52,12 @@ routesContainer.add(UserLoggedController.historyAction, {
     middleware: Container.get('UserSession').isLogged
 });
 
+// Solo
+routesContainer.add(SoloController.init, {
+    path: '/solo',
+    middleware: Container.get('UserSession').isLogged
+});
+
 // Online setup
 routesContainer.add(OnlineController.setupAction, {
     path: '/online',
