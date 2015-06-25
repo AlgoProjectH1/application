@@ -7,7 +7,8 @@ var SoloController = {
         interval: null,
         start: null,
         current: "00:00"
-    }
+    },
+    captures: {1: 0, 2: 0}
 };
 
 
@@ -16,7 +17,7 @@ var SoloController = {
  */
 SoloController.init = function () {
     Container.get('Pages').load('game.play.solo.hbs', $('#content'), function () {
-        SoloController.goban = new Goban(13, $('#goban'));
+        SoloController.goban = new Goban(19, $('#goban'));
         SoloController.intersections = new Intersections(SoloController.goban.getSize(), false);
 
         SoloController.initPlayers();
@@ -78,12 +79,34 @@ SoloController.resetTime = function () {
 SoloController.initPlayers = function () {
     SoloController.players.me = {
         captures: 0,
-        infos: { color: 'black' }
+        infos: { color: 'white' }
     };
     SoloController.players.adversary = {
         captures: 0,
-        infos: { color: 'white' }
+        infos: { color: 'black' }
     };
+};
+
+
+SoloController.verifyNodesToDie = function () {
+    // Calcul new goban for each player
+    for (var player = 1; player <= 2; player++) {
+        var nodeController = new NodeDetection(player, SoloController.intersections.get());
+        var nodes = nodeController.getNodes();
+        var playerN = (player === 1) ? 2 : 1;
+
+        for (var node in nodes) {
+            var currentNode = nodes[node];
+
+            if (currentNode.freedom === 0) {
+                for (var stone in currentNode.stones) {
+                    var currentStone = currentNode.stones[stone];
+                    SoloController.intersections.set(currentStone, 0);
+                    SoloController.captures[playerN]++;
+                }
+            }
+        }
+    }
 };
 
 
@@ -120,6 +143,11 @@ SoloController._eventMove = function () {
     SoloController.turn = 'black';
 
     SoloController.intersections.set({x: x, y: y}, 2);
+
+    // Kill nodes
+    SoloController.verifyNodesToDie();
+
+    SoloController._updateCaptures(SoloController.captures);
     SoloController.intersections.draw();
 
     // Log
@@ -209,5 +237,10 @@ SoloController._callbackIA = function (infos) {
     SoloController._log('<b>IA</b> a joué en <b>'+ infos.move.x +'</b>:<b>'+ infos.move.y +'</b>');
 
     SoloController.intersections.set({x: infos.move.x, y: infos.move.y}, 1);
+
+    // Kill nodes
+    SoloController.verifyNodesToDie();
+
+    SoloController._updateCaptures(SoloController.captures);
     SoloController.intersections.draw();
 };
