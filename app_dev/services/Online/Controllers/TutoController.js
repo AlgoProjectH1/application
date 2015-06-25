@@ -7,16 +7,28 @@ var TutoController = {};
 TutoController._eventTuto = function () {
     $('#content-tuto').fadeIn();
 
-    Container.get('Pages').load('tuto.one.hbs', $('#content-tuto'), function () {
-        $('#exit-tuto').on('click', TutoController._exitEvent);
+    Container.get('Pages').load('tuto.one.hbs', $('#container-tuto'), function () {
+        $('#content-tuto').on('click', '#exit-tuto', TutoController._exitEvent);
+        $('#content-tuto').on('click', '#tuto-interface', TutoController._interfaceEvent);
+        $('#content-tuto').on('click', '#tuto-placements', TutoController._placementsEvent);
     });
 };
 
 
 TutoController._exitEvent = function () {
     localStorage.setItem('tutorial', true);
-    
+
     $('#content-tuto').fadeOut(function () {
         $('#content-tuto').html('');
     });
+};
+
+
+TutoController._interfaceEvent = function () {
+    Container.get('Pages').load('tuto.interface.hbs', $('#container-tuto'), function () {});
+};
+
+
+TutoController._placementsEvent = function () {
+    Container.get('Pages').load('tuto.placements.hbs', $('#container-tuto'), function () {});
 };
