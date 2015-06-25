@@ -27,6 +27,12 @@ GameController.init = function () {
     $('#game-quit').on('click', GameController._eventQuitGame);
     $('#game-skip').on('click', GameController._eventSkip);
     $('#elements').on('click', 'div', GameController._eventMove);
+    $('#game-tuto').on('click', TutoController._eventTuto);
+
+    // If user didn't see the tuto we display it
+    if (!localStorage.getItem('tutorial')) {
+        TutoController._eventTuto();
+    }
 };
 
 
