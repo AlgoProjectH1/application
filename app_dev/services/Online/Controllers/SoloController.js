@@ -142,6 +142,8 @@ SoloController._eventMove = function () {
     $('[data-color="black"]').attr('data-turn', true);
     SoloController.turn = 'black';
 
+    $('#elements .preview').removeClass('white preview');
+
     SoloController.intersections.set({x: x, y: y}, 2);
 
     // Kill nodes
@@ -218,6 +220,27 @@ SoloController.requestIA = function () {
 
 
 /**
+ * Ask IA
+ */
+SoloController.askIA = function () {
+    new Request( Apis.ia.url +'/simulate' )
+        .data('goban', JSON.stringify(SoloController.intersections.get()))
+        .success(function (response) {
+            response = JSON.parse(response);
+
+            if (response.error === true){
+                // error IA
+                return;
+            }
+
+            var infos = response.infos;
+            $('#elements [data-x="'+ infos.move.x +'"][data-y="'+ infos.move.y +'"]').addClass('white preview');
+        })
+        .POST();
+};
+
+
+/**
  * When the server refresh the goban
  * @param object infos
  */
@@ -243,4 +266,7 @@ SoloController._callbackIA = function (infos) {
 
     SoloController._updateCaptures(SoloController.captures);
     SoloController.intersections.draw();
+
+    // Ask IA
+    SoloController.askIA();
 };
