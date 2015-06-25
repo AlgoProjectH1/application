@@ -14,17 +14,17 @@ class Pages {
      * @param function callback
      */
     load(page, container, callback) {
-        this.loading.fadeIn();
-        $('#content').hide();
-
         if (!container)
             container = $('#content');
 
+        this.loading.fadeIn();
+        container.hide();
+
         Container.get('Template').get(page, function (template) {
-            $('#content').html(template);
+            container.html(template);
 
             this.loading.hide();
-            $('#content').fadeIn();
+            container.fadeIn();
 
             callback();
         }.bind(this));
