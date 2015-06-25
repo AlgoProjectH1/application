@@ -61,8 +61,17 @@ class Intersections {
         for (var x = 0; x < this.interCount; x++) {
             for (var y = 0; y < this.interCount; y++) {
                 //var cellWidth = Math.ceil(this.totalWidth / (this.interCount - 1));
-                var posX = (x * 33) - 15;
-                var posY = (y * 33) - 15 + y;
+                var width = (this.interCount > 13) ? 22 : 33;
+                var minus = (this.interCount > 13) ? 10 : 15;
+
+                var posX = (x * width) - minus;
+
+                if (this.interCount > 13) {
+                    var posY = (y * width) - minus;
+                } else {
+                    var posY = (y * width) - minus + y;
+                }
+                
                 var player = this.intersections[x][y];
 
                 switch (player) {
