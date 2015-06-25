@@ -1,0 +1,77 @@
+#content-tuto {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+
+    &.active {
+        display: block;
+    }
+
+    .subtitle {
+        font-size: 15px;
+        text-transform: uppercase;
+        color: #838487;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    h2 {
+        text-align: right;
+        font-size: 35px;
+        color: rgb(26, 26, 26);
+        text-transform: uppercase;
+        font-family: "Source sans pro";
+        font-weight: 300;
+        display: block;
+        margin-bottom: 70px;
+
+        b {
+            font-weight: bold;
+        }
+    }
+
+    span.or {
+        display: block;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 20px;
+        color: #121212;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        height: 50px;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 20px;
+        color: white;
+        text-transform: uppercase;
+        border: none;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        text-align: left;
+        font-weight: normal;
+        font-size: 15px;
+        cursor: pointer;
+        outline: none;
+
+        &#page-tuto-two {
+            background: #262626;
+            color: #fff;
+        }
+
+        &#exit-tuto {
+            background: #e4e4e4;
+            color: #262626;
+        }
+    }
+}
