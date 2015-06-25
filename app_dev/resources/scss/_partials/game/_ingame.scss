@@ -1,6 +1,9 @@
 $items: 12;
 $itemsWidth: 33px;
 
+$itemsLarge: 19;
+$itemsLargeWidth: 21px;
+
 .game-container {
     margin-top: calc(50vh - 250px);
     height: 500px;
@@ -17,6 +20,11 @@ $itemsWidth: 33px;
     height: $itemsWidth * $items;
     margin-top: 20px;
     position: relative;
+
+    &.game-large {
+        width: $itemsLargeWidth * $itemsLarge;
+        height: $itemsLargeWidth * $itemsLarge;
+    }
 }
 
 #goban {
@@ -26,10 +34,19 @@ $itemsWidth: 33px;
     border-collapse: collapse;
 }
 
+.game-large #goban {
+    height: $itemsLargeWidth * $itemsLarge !important;
+}
+
 #goban td {
     height: $itemsWidth;
     width: $itemsWidth;
     border: solid 1px #979998;
+}
+
+.game-large #goban td {
+    height: $itemsLargeWidth !important;
+    width: $itemsLargeWidth !important;
 }
 
 #goban tr:nth-child(odd) td:nth-child(odd),
@@ -60,7 +77,12 @@ $itemsWidth: 33px;
     @include transition-duration(60ms);
 }
 
-#elements div:hover {
+.game-large #elements div {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+#elements[data-turn="true"] div:hover {
     cursor: pointer;
 }
 
@@ -90,7 +112,7 @@ $itemsWidth: 33px;
 
     #game-log {
         overflow-y: scroll;
-        
+
         div {
             margin-bottom: 5px;
             font-family: "Source Sans Pro";
