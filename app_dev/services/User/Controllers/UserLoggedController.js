@@ -69,7 +69,7 @@ UserLoggedController._successGetHistory = function (infos) {
  * When a user click on "Solo vs AI"
  */
 UserLoggedController._eventSoloChoice = function () {
-
+    Container.get('HTTP').setURI('/solo');
 };
 
 /**
