@@ -1,0 +1,43 @@
+.game-history {
+    margin-top: 50px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+    th {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: "Source sans pro";
+        font-size: 18px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    tr {
+        margin-top: 40px;
+    }
+
+    td {
+        padding-bottom: 10px;
+        font-size: 15px;
+        font-family: "Source sans pro";
+        text-align: center;
+    }
+
+    td.win,
+    td.lost {
+        font-weight: bold;
+    }
+
+    td.win {
+        color: #43ad68;
+    }
+
+    td.lost {
+        color: #ef777b;
+    }
+
+    td.score b {
+        color: #0e5b9c;
+    }
+}
