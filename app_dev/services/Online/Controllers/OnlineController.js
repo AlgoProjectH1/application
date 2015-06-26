@@ -178,8 +178,6 @@ OnlineController.matchFoundEvent = function (infos) {
     infos = JSON.parse(infos);
     infos.me.turn = (infos.me.color == 'black') ? true : false;
 
-    console.log(infos);
-
     // Open socket.io chat connection
     ChatController.connect(Apis.chat.url);
 
