@@ -31,6 +31,12 @@ SoloController.init = function () {
         $('#game-quit').on('click', SoloController._eventQuitGame);
         $('#game-skip').on('click', SoloController._eventSkip);
         $('#elements').on('click', 'div', SoloController._eventMove);
+        $('#game-tuto').on('click', TutoController._eventTuto);
+
+        // If user didn't see the tuto we display it
+        if (!localStorage.getItem('tutorial')) {
+            TutoController._eventTuto();
+        }
 
         SoloController.requestIA();
     });
