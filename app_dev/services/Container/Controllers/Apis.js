@@ -13,5 +13,10 @@ var Apis = {
     ia: {
         url: 'http://api-game-swipe.herokuapp.com'
         //url: 'localhost:1338'
+    },
+
+    chat: {
+        url: 'http://api-chat-swipe.herokuapp.com',
+        //url: 'localhost:1334'
     }
 };
