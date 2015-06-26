@@ -85,7 +85,7 @@ gulp.task('cleanResources', function () {
 
 /** MOVE RESOURCES **/
 gulp.task('moveResources', ['cleanResources'], function () {
-    return gulp.src(devPath +'/resources/+(fonts|images)/**/*')
+    return gulp.src(devPath +'/resources/+(fonts|images|videos)/**/*')
         .pipe(gulp.dest(prodPath +'/resources'));
 });
 
