@@ -90,6 +90,9 @@ SocketController.on('game:refresh', GameController.refreshEvent);
 // When the user skipped
 SocketController.on('game:skipped', GameController.skippedEvent);
 
+// When the game is ended
+SocketController.on('game:end', GameController.endEvent);
+
 // When the server kick us off
 SocketController.on('game:disconnect', GameController.disconnectEvent);
 
