@@ -154,6 +154,28 @@ $itemsLargeWidth: 21px;
     &.game-history {
         .game-content {
             height: 150px;
+
+            &.game-chat {
+                height: 200px;
+            }
+        }
+
+        #game-chat {
+            height: 150px;
+            overflow-y: scroll;
+
+            div {
+                margin-bottom: 5px;
+                font-family: "Source Sans Pro";
+                text-transform: uppercase;
+            }
+        }
+
+        #chat-message {
+            width: 100%;
+            height: 20px;
+            font-size: 13px;
+            font-family: "Source Sans Pro";
         }
     }
 
