@@ -94,6 +94,9 @@ SoloController.initPlayers = function () {
 };
 
 
+/**
+ * Kill nodes
+ */
 SoloController.verifyNodesToDie = function () {
     // Calcul new goban for each player
     for (var player = 1; player <= 2; player++) {
@@ -113,6 +116,34 @@ SoloController.verifyNodesToDie = function () {
             }
         }
     }
+};
+
+
+/**
+ * Count points
+ */
+SoloController.countPoints = function () {
+    var nodeController = new NodeEmptyDetection(SoloController.intersections.get());
+    var nodes = nodeController.getNodes();
+
+    for (var node in nodes) {
+        var currentNode = nodes[node];
+        var currentPlayer = 0;
+        var toAdd = 0;
+
+        for (var stone in currentNode.stones) { toAdd++; }
+
+        if (currentNode.neighbors.black === 0 && currentNode.neighbors.white > 1) {
+            SoloController.captures[2] += toAdd;
+        } else if (currentNode.neighbors.white === 0 && currentNode.neighbors.black > 1) {
+            SoloController.captures[1] += toAdd;
+        }
+    }
+
+    // KOMI
+    SoloController.captures[2] += 7.5;
+
+    return SoloController.captures;
 };
 
 
@@ -173,13 +204,36 @@ SoloController._eventSkip = function () {
     if (SoloController.turn != SoloController.players.me.infos.color)
         return;
 
-    $('#elements').attr('data-turn', false);
-    $('[data-color="white"]').attr('data-turn', false);
-    $('[data-color="black"]').attr('data-turn', true);
-    SoloController.turn = 'black';
+    var scores = SoloController.countPoints();
+    var winner = {};
+    var loser = {};
 
-    // Log
-    SoloController._log('<b>Vous</b> avez <b>passé votre tour</b>');
+    if (scores[2] > scores[1]) {
+        winner = {
+            username: "Vous",
+            score: scores[2]
+        };
+        loser = {
+            username: "IA",
+            score: scores[1]
+        };
+    } else {
+        winner = {
+            username: adversary.infos.username,
+            score: scores[1]
+        };
+        loser = {
+            username: "Vous",
+            score: scores[2]
+        };
+    }
+
+    Container.get('Template').set({
+        winner: winner,
+        loser: loser
+    });
+
+    Container.get('Pages').load('game.end.hbs', $('#content'), function () {});
 };
 
 
