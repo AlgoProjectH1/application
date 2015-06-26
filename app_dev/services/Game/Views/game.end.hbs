@@ -1,13 +1,36 @@
 <header class="end-header">
-    Le gagnant est {{ winner.username }}
+    <div class="container">
+        <div class="end-logo"></div>
+
+        Victoire de <b>{{ winner.username }}</b>
+    </div>
 </header>
 
 <section class="container">
-    <section class="overview-container">
-
+    <section class="overview-container end-container">
         <!-- Content -->
         <div class="overview-content online-content">
-            
+            <h3>Scores</h3>
+            <hr>
+
+            <div class="score-left">
+                {{ winner.username }}
+            </div>
+
+            <div class="score-right">
+                {{ loser.username }}
+            </div>
+
+            <div class="score-center">
+                <span>{{ winner.score }}</span> - <span>{{ loser.score }}</span>
+            </div>
+
+            <div class="clear"></div>
+
+            <textarea>{{ winner.username }} vient de gagner ({{ winner.score }} - {{ loser.score }}) contre {{ loser.username }} dans un match serré ! Vous voulez tater le SWAG ? Jouez à SWIPE avec moi ! #CHALLENGE #HETIC #SWIPE</textarea>
+
+            <button class="facebook">Partager sur <b>facebook</b></button>
+            <button class="twitter">Partager sur <b>twitter</b></button>
         </div>
     </section>
 </section>
