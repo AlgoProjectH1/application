@@ -181,7 +181,6 @@ GameController._log = function (message) {
 GameController._updateCaptures = function (captures) {
     for (var color in captures) {
         var colorName = (color == 1) ? 'black' : 'white';
-        console.log(colorName, captures[color]);
         $('h5[data-score="'+ colorName +'"]').html(captures[color]);
     }
 };
@@ -273,4 +272,46 @@ GameController.skippedEvent = function (infos) {
     if (GameController.turn != nextTurn) {
         GameController.changeTurn();
     }
+};
+
+
+/**
+ * When the other skipped his turn
+ */
+GameController.endEvent = function (scores) {
+    scores = JSON.parse(scores).scores;
+    var me = GameController.players.me;
+    var adversary = GameController.players.adversary;
+    var meColor = (me.infos.color == 'black') ? 1 : 2;
+    var advColor = (adversary.infos.color == 'black') ? 1 : 2;
+
+    var winner = {};
+    var loser = {};
+
+    if (scores[meColor] > scores[advColor]) {
+        winner = {
+            username: me.infos.username,
+            score: scores[meColor]
+        };
+        loser = {
+            username: adversary.infos.username,
+            score: scores[advColor]
+        };
+    } else {
+        winner = {
+            username: adversary.infos.username,
+            score: scores[advColor]
+        };
+        loser = {
+            username: me.infos.username,
+            score: scores[meColor]
+        };
+    }
+
+    Container.get('Template').set({
+        winner: winner,
+        loser: loser
+    });
+
+    Container.get('Pages').load('game.end.hbs', $('#content'), function () {});
 };
