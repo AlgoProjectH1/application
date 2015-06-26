@@ -1,4 +1,5 @@
 var GameController = {
+    gameID: "",
     goban: "",
     intersections: "",
     players: {},
@@ -27,6 +28,7 @@ GameController.init = function () {
     $('#game-quit').on('click', GameController._eventQuitGame);
     $('#game-skip').on('click', GameController._eventSkip);
     $('#elements').on('click', 'div', GameController._eventMove);
+    $('#chat-post').on('submit', GameController._eventMessage);
     $('#game-tuto').on('click', TutoController._eventTuto);
 
     // If user didn't see the tuto we display it
@@ -120,6 +122,7 @@ GameController.changeTurn = function () {
  */
 GameController._eventQuitGame = function () {
     SocketController.disconnect();
+    ChatController.disconnect();
     GameController.resetPlayers();
     Container.get('HTTP').setURI('/overview');
 };
@@ -185,10 +188,40 @@ GameController._updateCaptures = function (captures) {
 
 
 /**
+ * When the send a message
+ */
+GameController._eventMessage = function (event) {
+    event.preventDefault();
+    var message = $('#chat-message').val();
+
+    ChatController.send('message:add', JSON.stringify({
+        user: {username: GameController.players.me.infos.username},
+        message: message,
+        gameID: GameController.gameID
+    }));
+
+    $('#chat-message').val('');
+    $('#game-chat').append('<div><b>MOI</b>: '+ message);
+    $('#game-chat').scrollTop($('#game-chat').height());
+};
+
+
+/**
+ * When the adversary send a message
+ */
+GameController.newMessageEvent = function (datas) {
+    datas = JSON.parse(datas);
+    $('#game-chat').append('<div><b>'+ datas.user +'</b>: '+ datas.message);
+    $('#game-chat').scrollTop($('#game-chat').height());
+};
+
+
+/**
  * When we are kicked off
  */
 GameController.disconnectEvent = function () {
     SocketController.connection = null;
+    ChatController.disconnect();
     GameController.resetPlayers();
     Container.get('HTTP').setURI('/overview');
 };

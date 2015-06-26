@@ -178,6 +178,11 @@ OnlineController.matchFoundEvent = function (infos) {
     infos = JSON.parse(infos);
     infos.me.turn = (infos.me.color == 'black') ? true : false;
 
+    console.log(infos);
+
+    // Open socket.io chat connection
+    ChatController.connect(Apis.chat.url);
+
     Container.get('Template').set({
         me: infos.me,
         adversary: infos.adversary
@@ -185,6 +190,7 @@ OnlineController.matchFoundEvent = function (infos) {
 
     // Set Players
     GameController.setPlayers(infos.me, infos.adversary);
+    GameController.gameID = infos.gameIdentifier;
 
     // Stop anim
     OnlineController._removeLookingAnimation();
@@ -209,6 +215,12 @@ OnlineController.matchFoundEvent = function (infos) {
     // Display game page
     setTimeout(function () {
         Container.get('Pages').load('game.play.hbs', $('#content'), GameController.init);
+
+        // Connect to chat channel
+        ChatController.send('channel:join', JSON.stringify({
+            gameID: infos.gameIdentifier,
+            user: {username: infos.me.username}
+        }));
     }, 1500);
 };
 
