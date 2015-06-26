@@ -11,6 +11,7 @@ TutoController._eventTuto = function () {
         $('#content-tuto').on('click', '#exit-tuto', TutoController._exitEvent);
         $('#content-tuto').on('click', '#tuto-interface', TutoController._interfaceEvent);
         $('#content-tuto').on('click', '#tuto-placements', TutoController._placementsEvent);
+        $('#content-tuto').on('click', '#tuto-interdits', TutoController._interditsEvent);
     });
 };
 
@@ -19,7 +20,7 @@ TutoController._exitEvent = function () {
     localStorage.setItem('tutorial', true);
 
     $('#content-tuto').fadeOut(function () {
-        $('#content-tuto').html('');
+        $('#container-tuto').html('');
     });
 };
 
@@ -31,4 +32,9 @@ TutoController._interfaceEvent = function () {
 
 TutoController._placementsEvent = function () {
     Container.get('Pages').load('tuto.placements.hbs', $('#container-tuto'), function () {});
+};
+
+
+TutoController._interditsEvent = function () {
+    Container.get('Pages').load('tuto.interdits.hbs', $('#container-tuto'), function () {});
 };
