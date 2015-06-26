@@ -1,0 +1,133 @@
+.end-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    font-size: 25px;
+    font-family: "Source Sans pro";
+    color: #000;
+    box-sizing: border-box;
+    padding-top: 25px;
+    text-transform: uppercase;
+    background: #fff;
+    border-bottom: solid 2px rgba(0,0,0,0.1);
+
+    .end-logo {
+        float: left;
+        background: url('../resources/images/logo_icon_full.png');
+        background-size: 70px;
+        width: 70px;
+        height: 70px;
+        margin-top: -24px;
+        margin-right: 30px;
+    }
+}
+
+.end-container {
+    height: 300px;
+    width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: calc(50vh - 150px);
+
+    h3 {
+        font-size: 25px;
+        font-weight: normal;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: "Source Sans Pro";
+        letter-spacing: 3px;
+        color: #313131;
+    }
+
+    hr {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .score-left,
+    .score-right {
+        text-transform: uppercase;
+        font-family: "Source Sans Pro";
+        letter-spacing: 2px;
+        color: #313131;
+        font-size: 15px;
+    }
+
+    .score-left {
+        float: left;
+    }
+
+    .score-right {
+        float: right;
+    }
+
+    .score-center {
+        margin-top: 20px;
+        font-family: "Source Sans Pro";
+        font-size: 30px;
+        text-align: center;
+
+        span {
+            font-weight: bold;
+
+            &:nth-child(1) {
+                margin-right: 10px;
+                color: #009ec9;
+            }
+
+            &:nth-child(2) {
+                margin-left: 10px;
+                color: #d82e36;
+            }
+        }
+    }
+
+    textarea {
+        font-family: "Source Sans Pro";
+        font-size: 13px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 80px;
+        box-sizing: border-box;
+        height: 80px;
+        background:#f1f5f6;
+        border: solid 2px black;
+        padding: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .facebook,
+    .twitter {
+        cursor: pointer;
+        height: 30px;
+        border: none;
+        color: white;
+        font-size: 13px;
+        font-family: "Source Sans Pro";
+        text-transform: uppercase;
+        float: right;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        margin-left: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .facebook {
+        background: #315692;
+    }
+
+    .twitter {
+        background: #62d0f2;
+    }
+
+}
