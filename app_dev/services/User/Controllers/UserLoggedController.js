@@ -59,8 +59,6 @@ UserLoggedController._successGetHistory = function (infos) {
         games: infos
     });
 
-    console.log(infos);
-
     Container.get('Pages').load('user.history.hbs', $('#content'), function () {});
 };
 

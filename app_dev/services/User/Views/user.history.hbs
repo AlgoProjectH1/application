@@ -18,7 +18,20 @@
 
         <!-- Content -->
         <div class="overview-content online-content">
-            dede
+            <table class="game-history">
+                <th>IDENTIFIANT</th>
+                <th>TYPE DE PARTIE</th>
+                <th>SCORES</th>
+                <th>RESULTAT</th>
+            {{#each games}}
+                <tr>
+                    <td><b>{{game_id}}</b></td>
+                    <td>{{type}}</td>
+                    <td class="score"><b>{{points_black}}</b> - {{points_white}}</td>
+                    <td class="win">VICTOIRE</td>
+                </tr>
+            {{/each}}
+        </table>
         </div>
     </section>
 </section>
