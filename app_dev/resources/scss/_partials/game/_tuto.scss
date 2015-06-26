@@ -7,7 +7,7 @@
     right: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.9);
+    background: #f1f5f6;
 
     &.active {
         display: block;
@@ -73,5 +73,101 @@
             background: #e4e4e4;
             color: #262626;
         }
+    }
+
+
+    .aside-content {
+        width: 250px;
+        height: 600px;
+        background: white;
+        float: left;
+        @include border-radius(5px);
+
+        .number {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 30px;
+            height: 30px;
+            background: #262626;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-family: "Source Sans pro";
+            font-size: 15px;
+            @include border-radius(50%);
+            position: relative;
+            box-sizing: border-box;
+            padding-top: 7px;
+
+            &:before {
+                position: absolute;
+                content: "";
+                width: 35px;
+                height: 35px;
+                left: -3px;
+                top: -3.5px;
+                border: dashed 1px #262626;
+                background: transparent;
+                @include border-radius(50%);
+            }
+        }
+
+        h3 {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-family: "Source Sans pro";
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+
+        button {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            padding-left: 0;
+            height: 40px;
+            margin-bottom: 3px;
+
+            &.next {
+                background: #7abd9a;
+            }
+
+            &.back,
+            &#tuto-interface {
+                background: #83878a;
+                color: #000;
+            }
+
+            &#exit-tuto {
+                background: #024869;
+                color: #fff;
+            }
+        }
+
+        p {
+            font-size: 13px;
+            font-family: "Source sans pro";
+            color: black;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+    }
+
+    .main-content {
+        width: 700px;
+        float: left;
+        height: 600px;
     }
 }
