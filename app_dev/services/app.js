@@ -14,7 +14,6 @@ var Routing = new Router(Container.get('HTTP'));
 var routesContainer = new RoutesContainer();
 
 
-
 /************/
 /** Routes **/
 /************/
@@ -91,6 +90,12 @@ SocketController.on('game:refresh', GameController.refreshEvent);
 // When the user skipped
 SocketController.on('game:skipped', GameController.skippedEvent);
 
-
 // When the server kick us off
 SocketController.on('game:disconnect', GameController.disconnectEvent);
+
+
+/*******************/
+/**  Chat Events  **/
+/*******************/
+// When a message come
+ChatController.on('message:new', GameController.newMessageEvent);
